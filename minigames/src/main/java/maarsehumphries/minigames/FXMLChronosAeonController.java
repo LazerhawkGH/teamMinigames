@@ -57,6 +57,7 @@ public class FXMLChronosAeonController implements Initializable {
         for (Rectangle i : z) {
             if (collision(imgUser, i)) {
                 return true;
+                
             }
         }
         return false;
