@@ -43,6 +43,7 @@ public class FXMLChronosAeonController implements Initializable {
     private Boolean userMoving = false;
 
     Rectangle[] z;
+    
 
     public boolean collision(ImageView block1, Rectangle block2) {
         //returns true if the areas intersect, false if they dont
@@ -104,6 +105,7 @@ public class FXMLChronosAeonController implements Initializable {
                 userMoving=false;
             }
         }
+        
     }
 
     private void moveEnemies() {
@@ -153,14 +155,14 @@ public class FXMLChronosAeonController implements Initializable {
         }
     }
 
-    private int xCoord = 0;
-    @FXML private AnchorPane anchor;
+//    private int xCoord = 0;
+//    @FXML private AnchorPane anchor;
     
-    private void rootyTootShoot(){
-        Bullet b = new Bullet((int)imgUser.getLayoutX(), (int)imgUser.getLayoutY(),anchor); // Creates a custom object
-        b.move(2);                                                                          // Refer to Bullet.java to see how it works
-               
-    }
+//    private void rootyTootShoot(){
+//       
+//        Bullet b = new Bullet((int)imgUser.getLayoutX(), (int)imgUser.getLayoutY(),anchor); // Creates a custom object
+//                                                                                            // Refer to Bullet.java to see how it works                                                                           
+//    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
