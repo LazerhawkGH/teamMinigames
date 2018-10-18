@@ -112,6 +112,7 @@ public class FXMLChronosAeonController implements Initializable {
 
     }
 
+    private Boolean bulletCreated = false;
     @FXML
     private void moveUser(KeyEvent e) {
 
@@ -142,8 +143,9 @@ public class FXMLChronosAeonController implements Initializable {
                     rightYes = false;
                     break;
                 case ENTER:
-                    
+                bulletCreated = true;
                     break;
+
                 default:
                     break;
             }
