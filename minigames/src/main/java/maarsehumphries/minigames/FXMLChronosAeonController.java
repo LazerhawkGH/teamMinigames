@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -25,16 +26,11 @@ import java.util.ArrayList;
  */
 public class FXMLChronosAeonController implements Initializable {
 
-    @FXML
-    private ImageView imgUser;
-    @FXML
-    private Rectangle rectBoundsTop;
-    @FXML
-    private Rectangle rectBoundsBottom;
-    @FXML
-    private Rectangle rectBoundsLeft;
-    @FXML
-    private Rectangle rectBoundsRight;
+    @FXML private ImageView imgUser;
+    @FXML private Rectangle rectBoundsTop;
+    @FXML private Rectangle rectBoundsBottom;
+    @FXML private Rectangle rectBoundsLeft;
+    @FXML private Rectangle rectBoundsRight;
 
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
     Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveEnemies()));
@@ -143,6 +139,9 @@ public class FXMLChronosAeonController implements Initializable {
                     leftYes = true;
                     rightYes = false;
                     break;
+                case ENTER:
+                    
+                    break;
                 default:
                     break;
             }
@@ -154,6 +153,15 @@ public class FXMLChronosAeonController implements Initializable {
         }
     }
 
+    private int xCoord = 0;
+    @FXML private AnchorPane anchor;
+    
+    private void rootyTootShoot(){
+        Bullet b = new Bullet((int)imgUser.getLayoutX(), (int)imgUser.getLayoutY(),anchor); // Creates a custom object
+        b.move(2);                                                                          // Refer to Bullet.java to see how it works
+               
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         z = new Rectangle[]{rectBoundsTop, rectBoundsBottom, rectBoundsLeft, rectBoundsRight};
