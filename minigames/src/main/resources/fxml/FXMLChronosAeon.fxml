@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" onKeyPressed="#moveUser" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLChronosAeonController">
+   <children>
+      <Rectangle fx:id="rectBoundsLeft" arcHeight="1.0" arcWidth="1.0" height="600.0" stroke="BLACK" strokeType="INSIDE" width="5.0" />
+      <Rectangle fx:id="rectBoundsRight" arcHeight="1.0" arcWidth="1.0" height="600.0" layoutX="595.0" stroke="BLACK" strokeType="INSIDE" width="5.0" />
+      <Rectangle fx:id="rectBoundsTop" arcHeight="1.0" arcWidth="1.0" height="5.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle fx:id="rectBoundsBottom" arcHeight="1.0" arcWidth="1.0" height="5.0" layoutY="595.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <ImageView fx:id="imgUser" fitHeight="28.0" fitWidth="64.0" layoutX="222.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../document.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
