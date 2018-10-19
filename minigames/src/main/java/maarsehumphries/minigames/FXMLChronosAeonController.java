@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -31,6 +32,17 @@ public class FXMLChronosAeonController implements Initializable {
     @FXML private Rectangle rectBoundsBottom;
     @FXML private Rectangle rectBoundsLeft;
     @FXML private Rectangle rectBoundsRight;
+    
+    @FXML private Rectangle recBullet1;
+    @FXML private Rectangle recBullet2;
+    @FXML private Rectangle recBullet3;
+    @FXML private Rectangle recBullet4;
+    @FXML private Rectangle recBullet5;
+    @FXML private Rectangle recBullet6;
+    @FXML private Rectangle recBullet7;
+    @FXML private Rectangle recBullet8;
+    @FXML private Rectangle recBullet9;
+    @FXML private Rectangle recBullet10;
 
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
     Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveEnemies()));
@@ -43,6 +55,7 @@ public class FXMLChronosAeonController implements Initializable {
     private Boolean userMoving = false;
 
     Rectangle[] z;
+    Rectangle[] bullets;
     
 
     public boolean collision(ImageView block1, Rectangle block2) {
@@ -61,6 +74,10 @@ public class FXMLChronosAeonController implements Initializable {
     }
 
     private void move() {
+        if (bulletCreated){
+            ;
+            
+        }
         if (upYes == true && !collisionLoop()) {
             imgUser.setTranslateY(imgUser.getTranslateY() - 5);
         } else if (downYes == true && !collisionLoop()) {
@@ -112,6 +129,7 @@ public class FXMLChronosAeonController implements Initializable {
 
     }
 
+    private Boolean bulletCreated = false;
     @FXML
     private void moveUser(KeyEvent e) {
 
@@ -142,8 +160,9 @@ public class FXMLChronosAeonController implements Initializable {
                     rightYes = false;
                     break;
                 case ENTER:
-                    
+                bulletCreated = true;
                     break;
+
                 default:
                     break;
             }
@@ -167,6 +186,8 @@ public class FXMLChronosAeonController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         z = new Rectangle[]{rectBoundsTop, rectBoundsBottom, rectBoundsLeft, rectBoundsRight};
+        
+        bullets = new Rectangle[]{recBullet1, recBullet2, recBullet3, recBullet4, recBullet5, recBullet6, recBullet7, recBullet8, recBullet9, recBullet10};
     }
 
 }
