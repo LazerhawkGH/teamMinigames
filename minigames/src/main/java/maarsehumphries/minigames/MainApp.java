@@ -12,7 +12,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/FXMLChronosAeon.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
@@ -21,6 +21,7 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
         scene.getRoot().requestFocus();
+        stage.setOnCloseRequest(e -> System.exit(0));
     }
 
     /**
