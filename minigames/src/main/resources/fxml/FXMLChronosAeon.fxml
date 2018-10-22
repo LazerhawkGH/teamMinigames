@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" onKeyPressed="#moveUser" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLChronosAeonController">
    <children>
@@ -14,14 +15,17 @@
       <Rectangle fx:id="rectBoundsRight" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="600.0" layoutX="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
       <Rectangle fx:id="rectBoundsTop" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
       <Rectangle fx:id="rectBoundsBottom" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" layoutY="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
-      <ImageView fx:id="imgUser" fitHeight="28.0" fitWidth="64.0" layoutX="222.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgUser" fitHeight="51.0" fitWidth="34.0" layoutX="62.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" translateX="222.0" translateY="501.0">
          <image>
-            <Image url="@../document.png" />
+            <Image url="@../ship3.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="recBullet1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="7.0" layoutX="233.0" layoutY="494.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
       <Label alignment="CENTER" layoutX="6.0" layoutY="6.0" prefHeight="100.0" prefWidth="588.0" />
-      <Label layoutX="14.0" layoutY="86.0" prefHeight="17.0" prefWidth="48.0" text="Lives:" textFill="WHITE" />
+      <Rectangle fx:id="recBullet" fill="#727272" height="9.0" layoutX="64.0" layoutY="35.0" stroke="WHITE" strokeType="OUTSIDE" translateX="233.0" translateY="494.0" width="9.0" />
+      <Label layoutX="14.0" layoutY="86.0" prefHeight="17.0" prefWidth="48.0" text="Lives:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Rectangle fx:id="rectBoundsTop1" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
       <ImageView fitHeight="90.0" fitWidth="500.0" layoutX="47.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,5 +35,42 @@
             <DropShadow color="RED" height="6.0" radius="2.5" spread="1.0" width="6.0" />
          </effect>
       </ImageView>
+      <Rectangle fill="RED" height="25.0" layoutX="60.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="110.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="160.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="210.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="260.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="310.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="360.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="410.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="460.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="510.0" layoutY="209.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="60.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="110.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="160.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="210.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="260.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="310.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="360.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="410.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="460.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="510.0" layoutY="166.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="110.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="160.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="210.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="260.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="310.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="360.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="410.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="460.0" layoutY="123.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="110.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="160.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="210.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="260.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="310.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="360.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="410.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Rectangle fill="RED" height="25.0" layoutX="460.0" layoutY="252.0" stroke="#fffafa" strokeType="OUTSIDE" width="25.0" />
+      <Label layoutX="52.0" layoutY="88.0" text="3" textFill="WHITE" />
    </children>
 </AnchorPane>
