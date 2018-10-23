@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
+    
+    public static int points = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -21,14 +23,14 @@ public class MainApp extends Application {
         scene.getRoot().requestFocus();
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
+     public static int getPoints() {
+        return points;
+    }
+    public static void setPoints(int points) {
+        MainApp.points = points;
+    }
+    
+    
     public static void main(String[] args) {
         launch(args);
     }
