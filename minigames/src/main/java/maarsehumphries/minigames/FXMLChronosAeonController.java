@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import static maarsehumphries.minigames.MainApp.*;
 
 /**
  * FXML Controller class
@@ -33,6 +37,8 @@ public class FXMLChronosAeonController implements Initializable {
     @FXML private Rectangle rectBoundsBottom;
     @FXML private Rectangle rectBoundsLeft;
     @FXML private Rectangle rectBoundsRight;
+    
+    @FXML private Label lblPoints;
     
     @FXML private Rectangle recBullet;
     
@@ -51,8 +57,8 @@ public class FXMLChronosAeonController implements Initializable {
     
 
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
-    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(25), ae -> bulletMove()));
-    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveEnemies()));
+    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(15), ae -> bulletMove()));
+    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(100), ae -> moveEnemies()));
 
     private Boolean upYes = false;    /////////////////////////////////////////////////////////////////
     private Boolean downYes = false;  // Booleans to determine what direction the user is moving in  //
@@ -65,8 +71,7 @@ public class FXMLChronosAeonController implements Initializable {
     
     Rectangle[] z;       // Creates two empty arrays, will be filled during initialization
     Rectangle[] enemies; // 
-//  Rectangle[] bullets;
-//  ArrayList<Rectangle> bullets = new ArrayList();
+    
 
     public boolean collision(ImageView block1, Rectangle block2) {
         //returns true if the areas intersect, false if they dont
@@ -77,7 +82,7 @@ public class FXMLChronosAeonController implements Initializable {
     }
 
     private boolean collisionLoop() {
-        for (Rectangle i : z) {   // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
+        for (Rectangle i : z) {          // Loops through the bounds of the play area, sets each rectangle to 'i' as it goes through
             if (collision(imgUser, i)) { // Checks for collision between the user and any of the walls
                 return true;               
             }
@@ -85,11 +90,16 @@ public class FXMLChronosAeonController implements Initializable {
         return false;
     }
 
+    private int score = 0;
+    
     private boolean collisionBullets(){
-        for (Rectangle i:enemies){ // Goes through all of the enemies, sets 'i' as each one as it goes through
+        for (Rectangle i:enemies){       // Goes through all of the enemies, sets 'i' as each one as it goes through
             if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
-                i.setLayoutX(-25);
-                i.setLayoutY(-25);
+                i.setLayoutX(-1000);
+                i.setLayoutY(-1000);
+                score+=10;
+                setPoints(getPoints() + 10);
+                lblPoints.setText("" + getPoints());
                 return true;
             }else if (cEnemies(recBullet,rectBoundsTop)){ // If the user misses all of the enemies, prevents the bullet from
                 bulletCreated=false;                      // going off screen
@@ -108,10 +118,33 @@ public class FXMLChronosAeonController implements Initializable {
            recBullet.setTranslateX(576);
            recBullet.setTranslateY(89);          
         }
-        recBullet.setTranslateY(recBullet.getTranslateY() - 2);
+        recBullet.setTranslateY(recBullet.getTranslateY() - 6);
+    }
+    
+    private void reset(){
+        for (Rectangle e:enemies){
+            e.setTranslateX(0);
+            e.setTranslateY(0);
+        }
+        recBullet.setTranslateX(576);
+        recBullet.setTranslateY(89);
+        imgUser.setTranslateX(278);
+        imgUser.setTranslateY(535);
+        score=0;
     }
     
     private void move() {
+        if (score==360){
+            reset();
+            movement.stop();
+            movementEnemies.stop();
+            moveBullet.stop();
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Congratulations!");
+            alert.setHeaderText(null);
+            alert.setContentText("You have defeated all of the ships!");
+            alert.showAndWait();
+        }
         // If the user isn't colliding with a wall, and a direction has been inputted, move them in the direction
         if (upYes == true && !collisionLoop()) {
             imgUser.setTranslateY(imgUser.getTranslateY() - 5);
@@ -165,19 +198,27 @@ public class FXMLChronosAeonController implements Initializable {
      
     private void moveEnemies() {
        
-        for (Rectangle e:enemies){ // Loops through each enemy to move each one, 
+        for (Rectangle e:enemies){            // Loops through each enemy to move each one, 
             if (cEnemies(e,rectBoundsRight)){ // If one of the enemies hits the wall on the right
-                dir = 1; // The direction of the enemies is changed to the opposite direction
-                
-                e.setTranslateY(e.getTranslateY() + 5);
+                dir = 1;                      // The direction of the enemies is changed to the opposite direction
+                for (Rectangle h:enemies){    // Loops through again to move the enemies
+                    h.setTranslateY(h.getTranslateY() + 5);
+                    h.setTranslateX(h.getTranslateX() - 5);
+                }
+                break;
             }else if (cEnemies(e,rectBoundsLeft)){ // If one of the enemies hits the wall on the left
                 dir = 2;                           // The direction of the enemies is changed to the opposite direction
-                e.setTranslateY(e.getTranslateY() + 5);
+                for (Rectangle z:enemies){         // Loops through again to move the enemies
+                    z.setTranslateY(z.getTranslateY() + 5);
+                    z.setTranslateX(z.getTranslateX() + 5);
+                }
+                break;
             }
             
             if (dir==1){       // Moves the enemies left
                 e.setTranslateX(e.getTranslateX() - 5);
-            }else if (dir==2){ // Moves the enemies right
+            }
+            if (dir==2){ // Moves the enemies right
                 e.setTranslateX(e.getTranslateX() + 5);
             }
         }
@@ -235,21 +276,20 @@ public class FXMLChronosAeonController implements Initializable {
             movementEnemies.play();
         }
     }
-
-//    private int xCoord = 0;
-//    @FXML private AnchorPane anchor;
-    
-//    private void rootyTootShoot(){
-//       
-//        Bullet b = new Bullet((int)imgUser.getLayoutX(), (int)imgUser.getLayoutY(),anchor); // Creates a custom object
-//                                                                                            // Refer to Bullet.java to see how it works                                                                           
-//    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initializes both arrays, will be used later for movement/collision
         z = new Rectangle[]{rectBoundsTop, rectBoundsBottom, rectBoundsLeft, rectBoundsRight};
         enemies = new Rectangle[]{recEnemy1,recEnemy2,recEnemy3,recEnemy4,recEnemy5,recEnemy6,recEnemy7,recEnemy8,recEnemy9,recEnemy10,recEnemy11,recEnemy12,recEnemy13,recEnemy14,recEnemy15,recEnemy16,recEnemy17,recEnemy18,recEnemy19,recEnemy20,recEnemy21,recEnemy22,recEnemy23,recEnemy24,recEnemy25,recEnemy26,recEnemy27,recEnemy28,recEnemy29,recEnemy30,recEnemy31,recEnemy32,recEnemy33,recEnemy34,recEnemy35,recEnemy36};
+       
+        setPoints(getPoints());   // Obtains the amount of points the user has, sets a label box to that amount
+        lblPoints.setText("" + getPoints());
+        
+        score=0;
+        bulletCreated = false;
+        userMoving = false;
+        
     }
 
 }
