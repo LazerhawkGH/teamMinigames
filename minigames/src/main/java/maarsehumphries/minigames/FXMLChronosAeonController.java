@@ -51,7 +51,7 @@ public class FXMLChronosAeonController implements Initializable {
     
 
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
-    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(50), ae -> bulletMove()));
+    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(25), ae -> bulletMove()));
     Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveEnemies()));
 
     private Boolean upYes = false;
@@ -60,7 +60,8 @@ public class FXMLChronosAeonController implements Initializable {
     private Boolean rightYes = false;
     private Boolean gameStarted = false;
     private Boolean userMoving = false;
-
+    private Boolean bulletCreated = false;
+    
     Rectangle[] z;
     Rectangle[] enemies;
 //  Rectangle[] bullets;
@@ -85,16 +86,30 @@ public class FXMLChronosAeonController implements Initializable {
     }
 
     private boolean collisionBullets(){
-        for (Rectangle i:enemies){
-            if (cEnemies(recBullet, i)){
+        for (Rectangle i:enemies){ // Goes through all of the enemies, sets 'i' as each one as it goes through
+            if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
+                i.setLayoutX(-25);
+                i.setLayoutY(-25);
                 return true;
+            }else if (cEnemies(recBullet,rectBoundsTop)){ // If the user misses all of the enemies, prevents the bullet from
+                bulletCreated=false;                      // going off screen
+                moveBullet.stop();
+                recBullet.setTranslateX(576);
+                recBullet.setTranslateY(89);
             }
         }
         return false;    
     }
     
-    private void bulletMove(){
-       recBullet.setTranslateY(recBullet.getTranslateY() + 2);
+    private void bulletMove(){  
+        if (collisionBullets()){
+           bulletCreated=false;
+           moveBullet.stop();
+           recBullet.setTranslateX(576);
+           recBullet.setTranslateY(89);
+           
+        }
+        recBullet.setTranslateY(recBullet.getTranslateY() - 2);
     }
     
     private void move() {
@@ -150,9 +165,10 @@ public class FXMLChronosAeonController implements Initializable {
 
     private void moveEnemies() {
         
+        
     }
 
-    private Boolean bulletCreated = false;
+    
     @FXML
     private void moveUser(KeyEvent e) {
 
@@ -185,8 +201,9 @@ public class FXMLChronosAeonController implements Initializable {
                 case ENTER:
                     if (!bulletCreated){
                         bulletCreated=true;
-                        recBullet.setTranslateX(imgUser.getTranslateX());
-                        recBullet.setTranslateY(imgUser.getTranslateY());
+                        recBullet.setTranslateX(imgUser.getTranslateX() + 13);
+                        recBullet.setTranslateY(imgUser.getTranslateY() - 10);
+                        moveBullet.setCycleCount(Timeline.INDEFINITE);
                         moveBullet.play();
                         break;
                     }
