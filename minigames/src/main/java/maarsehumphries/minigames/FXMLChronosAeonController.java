@@ -72,11 +72,13 @@ public class FXMLChronosAeonController implements Initializable {
     Rectangle[] z;       // Creates two empty arrays, will be filled during initialization
     Rectangle[] enemies; // 
     
-
+    //Handles collision between an ImageView and a rectangle
     public boolean collision(ImageView block1, Rectangle block2) {
         //returns true if the areas intersect, false if they dont
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
+    
+    //Handles the collision between two rectangles
     public boolean cEnemies(Rectangle block1, Rectangle block2){
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
@@ -90,21 +92,22 @@ public class FXMLChronosAeonController implements Initializable {
         return false;
     }
 
-    private int score = 0;
+    private int score = 0; // Score only for the current game, reset after every 'round'
+                           // Used to check if the player has won
     
     private boolean collisionBullets(){
         for (Rectangle i:enemies){       // Goes through all of the enemies, sets 'i' as each one as it goes through
             if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
-                i.setLayoutX(-1000);
-                i.setLayoutY(-1000);
+                i.setLayoutX(-1000);     // Enemies that are hit are sent off the scene, where they can't interfere
+                i.setLayoutY(-1000);     // 
                 score+=10;
-                setPoints(getPoints() + 10);
-                lblPoints.setText("" + getPoints());
+                setPoints(getPoints() + 10);         // Uses the global variable so that points may be used in other scenes 
+                lblPoints.setText("" + getPoints()); // Updates after every hit
                 return true;
             }else if (cEnemies(recBullet,rectBoundsTop)){ // If the user misses all of the enemies, prevents the bullet from
                 bulletCreated=false;                      // going off screen
                 moveBullet.stop();
-                recBullet.setTranslateX(576);
+                recBullet.setTranslateX(576); // Moves the bullet to a different location after hitting a wall
                 recBullet.setTranslateY(89);
             }
         }
@@ -112,16 +115,17 @@ public class FXMLChronosAeonController implements Initializable {
     }
     
     private void bulletMove(){  
-        if (collisionBullets()){
+        if (collisionBullets()){  // If the bullet hits an enemy, the bullet is moved, and can then be fired again
            bulletCreated=false;
            moveBullet.stop();
            recBullet.setTranslateX(576);
            recBullet.setTranslateY(89);          
         }
-        recBullet.setTranslateY(recBullet.getTranslateY() - 6);
+        recBullet.setTranslateY(recBullet.getTranslateY() - 6); // Otherwise, the bullet continues moving upwards
     }
     
     private void reset(){
+        //Handles all code for the resetting of the game, occurs after winning or losing
         for (Rectangle e:enemies){
             e.setTranslateX(0);
             e.setTranslateY(0);
@@ -134,12 +138,12 @@ public class FXMLChronosAeonController implements Initializable {
     }
     
     private void move() {
-        if (score==360){
-            reset();
-            movement.stop();
-            movementEnemies.stop();
-            moveBullet.stop();
-            Alert alert = new Alert(AlertType.INFORMATION);
+        if (score==360){  // If the user has hit all of the enemies (10x36=360), then a pop-up notifies the user
+            reset();      // of their victory
+            movement.stop();        //Stops all of the timers to prevent any unnecessary movement
+            movementEnemies.stop(); //
+            moveBullet.stop();      //
+            Alert alert = new Alert(AlertType.INFORMATION); // Displays the alert box
             alert.setTitle("Congratulations!");
             alert.setHeaderText(null);
             alert.setContentText("You have defeated all of the ships!");
