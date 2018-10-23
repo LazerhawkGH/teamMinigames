@@ -1,6 +1,6 @@
 /*
  * Name: Zachary Maarse & Shayne Humphries
- * Date:
+ * Date: Oct 15, 2018
  * Purpose: Displays the main menu, allows the user to select the game of their choice
  */
 

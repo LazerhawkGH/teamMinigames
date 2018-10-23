@@ -1,3 +1,9 @@
+/*
+ * Name: Zachary Maarse & Shayne Humphries
+ * Date: Oct 15, 2018
+ * Purpose: Opens the starting scene, handles the global variables
+ */
+
 package maarsehumphries.minigames;
 
 import javafx.application.Application;
@@ -23,7 +29,8 @@ public class MainApp extends Application {
         scene.getRoot().requestFocus();
     }
 
-     public static int getPoints() {
+    // Handles the global variables
+    public static int getPoints() {
         return points;
     }
     public static void setPoints(int points) {
