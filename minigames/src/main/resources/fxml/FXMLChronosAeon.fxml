@@ -9,13 +9,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#moveUser" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLChronosAeonController">
+<AnchorPane id="AnchorPane" onKeyPressed="#moveUser" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLChronosAeonController">
    <children>
-      <Rectangle height="590.0" layoutX="5.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="590.0" />
-      <Rectangle fx:id="rectBoundsLeft" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
-      <Rectangle fx:id="rectBoundsRight" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="600.0" layoutX="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+      <Rectangle height="690.0" layoutX="5.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="590.0" />
+      <Rectangle fx:id="rectBoundsLeft" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="700.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+      <Rectangle fx:id="rectBoundsRight" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="700.0" layoutX="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
       <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
-      <Rectangle fx:id="rectBoundsBottom" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" layoutY="595.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <Rectangle fx:id="rectBoundsBottom" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="5.0" layoutY="695.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
       <ImageView fx:id="imgUser" fitHeight="51.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="278.0" translateY="535.0">
          <image>
             <Image url="@../ship3.png" />
