@@ -1,3 +1,9 @@
+/*
+ * Name: Zachary Maarse & Shayne Humphries
+ * Date: Oct 15, 2018
+ * Purpose: Opens the starting scene, handles the global variables
+ */
+
 package maarsehumphries.minigames;
 
 import javafx.application.Application;
@@ -9,14 +15,14 @@ import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
+    
+    public static int points = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
@@ -24,14 +30,15 @@ public class MainApp extends Application {
         stage.setOnCloseRequest(e -> System.exit(0));
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
+    // Handles the global variables
+    public static int getPoints() {
+        return points;
+    }
+    public static void setPoints(int points) {
+        MainApp.points = points;
+    }
+    
+    
     public static void main(String[] args) {
         launch(args);
     }

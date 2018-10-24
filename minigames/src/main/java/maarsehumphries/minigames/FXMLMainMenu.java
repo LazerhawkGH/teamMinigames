@@ -1,3 +1,10 @@
+/*
+ * Name: Zachary Maarse & Shayne Humphries
+ * Date: Oct 15, 2018
+ * Purpose: Displays the main menu, allows the user to select the game of their choice
+ */
+
+
 package maarsehumphries.minigames;
 
 import java.io.IOException;
@@ -16,6 +23,7 @@ import javafx.stage.Stage;
 
 public class FXMLMainMenu implements Initializable {
     
+
     @FXML
     private Label label;
     @FXML
@@ -53,7 +61,8 @@ public class FXMLMainMenu implements Initializable {
         stage.setOnCloseRequest(e -> System.exit(0));}
         if (btnG3.isArmed()){
         }
-    }
+
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
