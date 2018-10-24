@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" prefHeight="718.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLJumpDodgeController">
+   <children>
+      <ImageView fx:id="imgB" fitHeight="114.0" fitWidth="118.0" layoutX="24.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgO" fitHeight="64.0" fitWidth="56.0" layoutX="588.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../rock.png" />
+         </image></ImageView>
+      <ImageView fx:id="imgG" fitHeight="149.0" fitWidth="777.0" layoutX="-2.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnGame" focusTraversable="false" layoutX="122.0" layoutY="119.0" mnemonicParsing="false" onAction="#Begin" text="Start" />
+      <Label fx:id="lblD" layoutX="546.0" layoutY="123.0" text="Score: 0" />
+      <ImageView fx:id="imgT" fitHeight="496.0" fitWidth="5.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="165.0" fitWidth="707.0" layoutX="35.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../JumpDodgeTitle.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
