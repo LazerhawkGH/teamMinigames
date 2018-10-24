@@ -20,8 +20,11 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
+import java.util.Optional;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import static maarsehumphries.minigames.MainApp.*;
 
@@ -124,12 +127,33 @@ public class FXMLChronosAeonController implements Initializable {
         recBullet.setTranslateY(recBullet.getTranslateY() - 6); // Otherwise, the bullet continues moving upwards
     }
     
+    //Handles all code for the resetting of the game, occurs after winning or losing
     private void reset(){
-        //Handles all code for the resetting of the game, occurs after winning or losing
         for (Rectangle e:enemies){
             e.setTranslateX(0);
             e.setTranslateY(0);
+            e.setVisible(true);
         }
+        //Manually moving each enemy to the correct spot
+        recEnemy1.setLayoutX(110) ;recEnemy1.setLayoutY(123) ;recEnemy2.setLayoutX(160) ;recEnemy2.setLayoutY(123);
+        recEnemy3.setLayoutX(210) ;recEnemy3.setLayoutY(123) ;recEnemy4.setLayoutX(260) ;recEnemy4.setLayoutY(123);
+        recEnemy5.setLayoutX(310) ;recEnemy5.setLayoutY(123) ;recEnemy6.setLayoutX(360) ;recEnemy6.setLayoutY(123);
+        recEnemy7.setLayoutX(410) ;recEnemy7.setLayoutY(123) ;recEnemy8.setLayoutX(460) ;recEnemy8.setLayoutY(123);
+        recEnemy9.setLayoutX(60)  ;recEnemy9.setLayoutY(166) ;recEnemy10.setLayoutX(110);recEnemy10.setLayoutY(166);
+        recEnemy11.setLayoutX(160);recEnemy11.setLayoutY(166);recEnemy12.setLayoutX(210);recEnemy12.setLayoutY(166);
+        recEnemy13.setLayoutX(260);recEnemy13.setLayoutY(166);recEnemy14.setLayoutX(310);recEnemy14.setLayoutY(166);
+        recEnemy15.setLayoutX(360);recEnemy15.setLayoutY(166);recEnemy16.setLayoutX(410);recEnemy16.setLayoutY(166);
+        recEnemy17.setLayoutX(460);recEnemy17.setLayoutY(166);recEnemy18.setLayoutX(510);recEnemy18.setLayoutY(166);
+        recEnemy19.setLayoutX(60) ;recEnemy19.setLayoutY(209);recEnemy20.setLayoutX(110);recEnemy20.setLayoutY(209);
+        recEnemy21.setLayoutX(160);recEnemy21.setLayoutY(209);recEnemy22.setLayoutX(210);recEnemy22.setLayoutY(209);
+        recEnemy23.setLayoutX(260);recEnemy23.setLayoutY(209);recEnemy24.setLayoutX(310);recEnemy24.setLayoutY(209);
+        recEnemy25.setLayoutX(360);recEnemy25.setLayoutY(209);recEnemy26.setLayoutX(410);recEnemy26.setLayoutY(209);
+        recEnemy27.setLayoutX(460);recEnemy27.setLayoutY(209);recEnemy28.setLayoutX(510);recEnemy28.setLayoutY(209);
+        recEnemy29.setLayoutX(110);recEnemy29.setLayoutY(252);recEnemy30.setLayoutX(160);recEnemy30.setLayoutY(252);
+        recEnemy31.setLayoutX(210);recEnemy31.setLayoutY(252);recEnemy32.setLayoutX(260);recEnemy32.setLayoutY(252);
+        recEnemy33.setLayoutX(310);recEnemy33.setLayoutY(252);recEnemy34.setLayoutX(360);recEnemy34.setLayoutY(252);
+        recEnemy35.setLayoutX(410);recEnemy35.setLayoutY(252);recEnemy36.setLayoutX(460);recEnemy36.setLayoutY(252);
+         
         recBullet.setTranslateX(576);
         recBullet.setTranslateY(89);
         imgUser.setTranslateX(278);
@@ -143,11 +167,12 @@ public class FXMLChronosAeonController implements Initializable {
             movement.stop();        //Stops all of the timers to prevent any unnecessary movement
             movementEnemies.stop(); //
             moveBullet.stop();      //
+            userMoving = false;
             Alert alert = new Alert(AlertType.INFORMATION); // Displays the alert box
             alert.setTitle("Congratulations!");
             alert.setHeaderText(null);
             alert.setContentText("You have defeated all of the ships!");
-            alert.showAndWait();
+            Platform.runLater(alert::showAndWait);
         }
         // If the user isn't colliding with a wall, and a direction has been inputted, move them in the direction
         if (upYes == true && !collisionLoop()) {
