@@ -62,7 +62,7 @@ public class FXMLMainMenu implements Initializable {
         if (btnG3.isArmed()){
         }
 
-    
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
