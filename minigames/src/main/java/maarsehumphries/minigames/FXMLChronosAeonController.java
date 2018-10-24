@@ -61,7 +61,7 @@ public class FXMLChronosAeonController implements Initializable {
 
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
     Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(15), ae -> bulletMove()));
-    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(100), ae -> moveEnemies()));
+    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(90), ae -> moveEnemies()));
 
     private Boolean upYes = false;    /////////////////////////////////////////////////////////////////
     private Boolean downYes = false;  // Booleans to determine what direction the user is moving in  //
@@ -312,7 +312,8 @@ public class FXMLChronosAeonController implements Initializable {
         z = new Rectangle[]{rectBoundsTop, rectBoundsBottom, rectBoundsLeft, rectBoundsRight};
         enemies = new Rectangle[]{recEnemy1,recEnemy2,recEnemy3,recEnemy4,recEnemy5,recEnemy6,recEnemy7,recEnemy8,recEnemy9,recEnemy10,recEnemy11,recEnemy12,recEnemy13,recEnemy14,recEnemy15,recEnemy16,recEnemy17,recEnemy18,recEnemy19,recEnemy20,recEnemy21,recEnemy22,recEnemy23,recEnemy24,recEnemy25,recEnemy26,recEnemy27,recEnemy28,recEnemy29,recEnemy30,recEnemy31,recEnemy32,recEnemy33,recEnemy34,recEnemy35,recEnemy36};
        
-        setPoints(getPoints());   // Obtains the amount of points the user has, sets a label box to that amount
+        setPoints(getPoints()
+        );   // Obtains the amount of points the user has, sets a label box to that amount
         lblPoints.setText("" + getPoints());
         
         score=0;
