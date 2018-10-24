@@ -38,9 +38,19 @@ public class FXMLMainMenu implements Initializable {
         stage.hide();
         stage.setScene(home_page_scene); 
         stage.setTitle("Jump Dodge");
-        stage.show(); }
+        stage.show(); 
+        home_page_scene.getRoot().requestFocus();
+        stage.setOnCloseRequest(e -> System.exit(0));}
         if (btnG2.isArmed()){
-        }
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLChronosAeon.fxml")); 
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+        stage.setScene(home_page_scene); 
+        stage.setTitle("Chronos Aeon");
+        stage.show(); 
+        home_page_scene.getRoot().requestFocus();
+        stage.setOnCloseRequest(e -> System.exit(0));}
         if (btnG3.isArmed()){
         }
     }

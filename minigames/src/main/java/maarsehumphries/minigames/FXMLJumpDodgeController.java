@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.MotionBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -37,13 +38,12 @@ public class FXMLJumpDodgeController implements Initializable {
   int m = 20;
   int n = 4;
   int e = 0;
+  MotionBlur mb = new MotionBlur();
             
     Image G= new Image(getClass().getResource("/Stop sign.png").toString());
     Image B = new Image(getClass().getResource("/link attack.png").toString());
-    Image O = new Image(getClass().getResource("/rock.png").toString());
     Timeline jump = new Timeline(new KeyFrame(Duration.millis(20), ae -> up()));
     Timeline obstacles = new Timeline(new KeyFrame(Duration.millis(10), ae -> move()));
-    Timeline time = new Timeline(new KeyFrame(Duration.millis(1000), ae -> tim()));
     
     private boolean c(ImageView block1, ImageView block2) {
     return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
@@ -51,9 +51,8 @@ public class FXMLJumpDodgeController implements Initializable {
        
    public void keyPressed(KeyEvent event){
         if (event.getCode()== KeyCode.SPACE){              
-           if(c(imgB,imgG)){
+            if(c(imgB,imgG)){
                imgB.setTranslateY(imgB.getTranslateY()-5);
-               jump.setCycleCount(Timeline.INDEFINITE);
                m = 20;
                jump.play();
         }
@@ -61,11 +60,10 @@ public class FXMLJumpDodgeController implements Initializable {
 }
     
    @FXML public void Begin(ActionEvent event){
-    time.setCycleCount(Timeline.INDEFINITE);
-    time.play();
     obstacles.setCycleCount(Timeline.INDEFINITE);
     obstacles.play();       //starts various timers
     btnGame.setDisable(true);
+    imgO.setEffect(mb);
     n = 4;
     e = 0;
     }
@@ -79,10 +77,12 @@ public class FXMLJumpDodgeController implements Initializable {
     }
         
       public void move() {
+        s++;
+        lblD.setText("Score: "+ s);
         imgO.setTranslateX(imgO.getTranslateX()-n);
         if (c(imgO,imgB)){
         obstacles.stop();
-        time.stop();
+        imgO.setEffect(null);
         imgO.setTranslateX(1);
         btnGame.setDisable(false);
         Alert alert = new Alert(Alert.AlertType.INFORMATION); //shows alert to tell of game over
@@ -91,7 +91,7 @@ public class FXMLJumpDodgeController implements Initializable {
         alert.setContentText("Your Score was "+s+"!");
         alert.show();
         s = 0;  
-        lblD.setText("Time: "+ s);}
+        lblD.setText("Score: "+ s);}
         if(c(imgT,imgO)){
         imgO.setTranslateX(300);
         e++;
@@ -102,14 +102,16 @@ public class FXMLJumpDodgeController implements Initializable {
         }}
                 
       public void tim() {
-      lblD.setText("Time: "+ s++); //updates time of survival
+      lblD.setText("Score "+ s++); //updates time of survival
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgO.setImage(O);
         imgB.setImage(B);
         imgG.setImage(G);
         imgT.setTranslateX(-100);
+        jump.setCycleCount(Timeline.INDEFINITE);
+        mb.setRadius(6);
+        imgO.setTranslateX(300);
     }    
 }
