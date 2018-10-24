@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="maarsehumphries.minigames.FXMLMainMenu">
+<AnchorPane id="AnchorPane" prefHeight="342.0" prefWidth="490.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="maarsehumphries.minigames.FXMLMainMenu">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="btnG1" layoutX="126" layoutY="90" onAction="#handleButtonAction" text="Game 1" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <Button fx:id="btnG2" layoutX="219.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Game 2" />
+      <Button fx:id="btnG3" layoutX="309.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Game 3" />
+      <Button fx:id="btnExit" layoutX="219.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Exit" />
     </children>
 </AnchorPane>
