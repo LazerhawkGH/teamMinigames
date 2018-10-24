@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class FXMLMainMenu implements Initializable {
@@ -55,6 +56,7 @@ public class FXMLMainMenu implements Initializable {
             stage.hide();
             stage.setScene(home_page_scene);
             stage.setTitle("Chronos Aeon");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/hammer.png")));
             stage.show();
             home_page_scene.getRoot().requestFocus();
             stage.setOnCloseRequest(e -> System.exit(0));
