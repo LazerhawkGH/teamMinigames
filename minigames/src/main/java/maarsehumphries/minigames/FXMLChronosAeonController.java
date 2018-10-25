@@ -26,6 +26,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import static maarsehumphries.minigames.MainApp.*;
 
 /**
@@ -135,16 +137,16 @@ public class FXMLChronosAeonController implements Initializable {
             e.setVisible(true);
         }
         //Manually moving each enemy to the correct spot
-        recEnemy1.setLayoutX(110) ;recEnemy1.setLayoutY(123) ;recEnemy2.setLayoutX(160) ;recEnemy2.setLayoutY(123);
-        recEnemy3.setLayoutX(210) ;recEnemy3.setLayoutY(123) ;recEnemy4.setLayoutX(260) ;recEnemy4.setLayoutY(123);
-        recEnemy5.setLayoutX(310) ;recEnemy5.setLayoutY(123) ;recEnemy6.setLayoutX(360) ;recEnemy6.setLayoutY(123);
-        recEnemy7.setLayoutX(410) ;recEnemy7.setLayoutY(123) ;recEnemy8.setLayoutX(460) ;recEnemy8.setLayoutY(123);
-        recEnemy9.setLayoutX(60)  ;recEnemy9.setLayoutY(166) ;recEnemy10.setLayoutX(110);recEnemy10.setLayoutY(166);
+        recEnemy1.setLayoutX(110);recEnemy1.setLayoutY(123);recEnemy2.setLayoutX(160);recEnemy2.setLayoutY(123);
+        recEnemy3.setLayoutX(210);recEnemy3.setLayoutY(123);recEnemy4.setLayoutX(260);recEnemy4.setLayoutY(123);
+        recEnemy5.setLayoutX(310);recEnemy5.setLayoutY(123);recEnemy6.setLayoutX(360);recEnemy6.setLayoutY(123);
+        recEnemy7.setLayoutX(410);recEnemy7.setLayoutY(123);recEnemy8.setLayoutX(460);recEnemy8.setLayoutY(123);
+        recEnemy9.setLayoutX(60);recEnemy9.setLayoutY(166);recEnemy10.setLayoutX(110);recEnemy10.setLayoutY(166);
         recEnemy11.setLayoutX(160);recEnemy11.setLayoutY(166);recEnemy12.setLayoutX(210);recEnemy12.setLayoutY(166);
         recEnemy13.setLayoutX(260);recEnemy13.setLayoutY(166);recEnemy14.setLayoutX(310);recEnemy14.setLayoutY(166);
         recEnemy15.setLayoutX(360);recEnemy15.setLayoutY(166);recEnemy16.setLayoutX(410);recEnemy16.setLayoutY(166);
         recEnemy17.setLayoutX(460);recEnemy17.setLayoutY(166);recEnemy18.setLayoutX(510);recEnemy18.setLayoutY(166);
-        recEnemy19.setLayoutX(60) ;recEnemy19.setLayoutY(209);recEnemy20.setLayoutX(110);recEnemy20.setLayoutY(209);
+        recEnemy19.setLayoutX(60);recEnemy19.setLayoutY(209);recEnemy20.setLayoutX(110);recEnemy20.setLayoutY(209);
         recEnemy21.setLayoutX(160);recEnemy21.setLayoutY(209);recEnemy22.setLayoutX(210);recEnemy22.setLayoutY(209);
         recEnemy23.setLayoutX(260);recEnemy23.setLayoutY(209);recEnemy24.setLayoutX(310);recEnemy24.setLayoutY(209);
         recEnemy25.setLayoutX(360);recEnemy25.setLayoutY(209);recEnemy26.setLayoutX(410);recEnemy26.setLayoutY(209);
@@ -159,6 +161,7 @@ public class FXMLChronosAeonController implements Initializable {
         imgUser.setTranslateX(278);
         imgUser.setTranslateY(535);
         score=0;
+        enemySpeed=0;
     }
     
     private void move() {
@@ -224,31 +227,50 @@ public class FXMLChronosAeonController implements Initializable {
     }
 
     private int dir = 2; // Initial direction -> right
-     
+    private int enemySpeed = 0; 
+    private int wallsHit = 0; 
+    
     private void moveEnemies() {
        
         for (Rectangle e:enemies){            // Loops through each enemy to move each one, 
             if (cEnemies(e,rectBoundsRight)){ // If one of the enemies hits the wall on the right
                 dir = 1;                      // The direction of the enemies is changed to the opposite direction
+                wallsHit+=1;                
                 for (Rectangle h:enemies){    // Loops through again to move the enemies
-                    h.setTranslateY(h.getTranslateY() + 5);
+                    h.setTranslateY(h.getTranslateY() + 8);
                     h.setTranslateX(h.getTranslateX() - 5);
                 }
                 break;
             }else if (cEnemies(e,rectBoundsLeft)){ // If one of the enemies hits the wall on the left
                 dir = 2;                           // The direction of the enemies is changed to the opposite direction
+                wallsHit+=1;
                 for (Rectangle z:enemies){         // Loops through again to move the enemies
-                    z.setTranslateY(z.getTranslateY() + 5);
+                    z.setTranslateY(z.getTranslateY() + 8);
                     z.setTranslateX(z.getTranslateX() + 5);
                 }
                 break;
+            } else if ((cEnemies(e,rectBoundsBottom)) || (collision(imgUser, e))){  // If any enemy hits the user, or makes it past the user,
+                reset();                                                            // The user is notified, and the game is reset
+                movement.stop();        //Stops all of the timers to prevent any unnecessary movement
+                movementEnemies.stop(); //
+                moveBullet.stop();      //
+                userMoving = false;
+                bulletCreated = false;
+                Alert alert = new Alert(AlertType.INFORMATION); 
+                alert.setTitle("You've failed...");
+                alert.setHeaderText(null);
+                alert.setContentText("You have failed your duty,");
+                Platform.runLater(alert::showAndWait); // Displays the alert box, must be in this format if used in a timer, as this one is
+            }
+            if (wallsHit==4){
+                enemySpeed+=1;
             }
             
             if (dir==1){       // Moves the enemies left
-                e.setTranslateX(e.getTranslateX() - 5);
+                e.setTranslateX(e.getTranslateX() - 5 - enemySpeed);
             }
             if (dir==2){ // Moves the enemies right
-                e.setTranslateX(e.getTranslateX() + 5);
+                e.setTranslateX(e.getTranslateX() + 5 + enemySpeed);
             }
         }
     }
@@ -306,20 +328,23 @@ public class FXMLChronosAeonController implements Initializable {
         }
     }
     
+    MediaPlayer player;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initializes both arrays, will be used later for movement/collision
         z = new Rectangle[]{rectBoundsTop, rectBoundsBottom, rectBoundsLeft, rectBoundsRight};
         enemies = new Rectangle[]{recEnemy1,recEnemy2,recEnemy3,recEnemy4,recEnemy5,recEnemy6,recEnemy7,recEnemy8,recEnemy9,recEnemy10,recEnemy11,recEnemy12,recEnemy13,recEnemy14,recEnemy15,recEnemy16,recEnemy17,recEnemy18,recEnemy19,recEnemy20,recEnemy21,recEnemy22,recEnemy23,recEnemy24,recEnemy25,recEnemy26,recEnemy27,recEnemy28,recEnemy29,recEnemy30,recEnemy31,recEnemy32,recEnemy33,recEnemy34,recEnemy35,recEnemy36};
        
-        setPoints(getPoints()
-        );   // Obtains the amount of points the user has, sets a label box to that amount
+        setPoints(getPoints());   // Obtains the amount of points the user has, sets a label box to that amount
         lblPoints.setText("" + getPoints());
         
         score=0;
         bulletCreated = false;
         userMoving = false;
         
+        player = new MediaPlayer((new Media(getClass().getResource("/Rasputin 8Bit.mp3").toString())));
+        player.play();
     }
 
 }
