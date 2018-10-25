@@ -9,7 +9,10 @@
     <children>
         <Label fx:id="lblScore" layoutX="7.0" layoutY="489.0" minHeight="16" minWidth="69" text="Score:" />
       <ImageView fx:id="imgUser" fitHeight="78.0" fitWidth="607.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgU" fitHeight="48.0" fitWidth="50.0" layoutX="64.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgU" fitHeight="48.0" fitWidth="50.0" layoutX="279.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Xmark.png" />
+         </image></ImageView>
       <ImageView fx:id="imgB" fitHeight="7.0" fitWidth="607.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="127.0" fitWidth="319.0" layoutX="144.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
