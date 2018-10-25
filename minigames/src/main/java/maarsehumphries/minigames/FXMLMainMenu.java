@@ -60,7 +60,15 @@ public class FXMLMainMenu implements Initializable {
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));}
         if (btnG3.isArmed()){
-        }
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLRhythm.fxml")); 
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.hide();
+        stage.setScene(home_page_scene); 
+        stage.setTitle("Rhythm Game");
+        stage.show(); 
+        home_page_scene.getRoot().requestFocus();
+        stage.setOnCloseRequest(e -> System.exit(0));}
 
     }
     
