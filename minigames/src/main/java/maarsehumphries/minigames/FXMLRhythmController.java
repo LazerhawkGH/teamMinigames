@@ -41,7 +41,7 @@ public class FXMLRhythmController implements Initializable {
     
      ArrayList<Integer> list = new ArrayList();
     
-    public void Begin(KeyEvent event) {
+    public void Begin(ActionEvent event) {
         if(game == false){
         choose(); 
         approach.play();   
@@ -74,7 +74,7 @@ public class FXMLRhythmController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         approach.setCycleCount(Timeline.INDEFINITE);
-       // imgU.setLayoutY(-100);
+        imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
     }    
 

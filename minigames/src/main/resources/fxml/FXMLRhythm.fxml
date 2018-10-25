@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,8 +17,9 @@
       <ImageView fx:id="imgB" fitHeight="7.0" fitWidth="607.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="127.0" fitWidth="319.0" layoutX="144.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../RhythmTitle.png" />
+            <Image url="@../rhythm.png" />
          </image>
       </ImageView>
+      <Button focusTraversable="false" layoutX="277.0" layoutY="166.0" mnemonicParsing="false" onAction="#Begin" text="Begin" />
     </children>
 </AnchorPane>
