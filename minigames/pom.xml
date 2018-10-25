@@ -99,7 +99,7 @@
                 </configuration>
             </plugin>
 
- <!-- Makes the jLink setup so you can give it to your friends-->
+ <!-- Makes the jLink setup so you can give it to your friends
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -131,7 +131,7 @@
                 </executions>
             </plugin>
               
-             <!-- Copies the depend FX files to your program  -->  
+            Copies the depend FX files to your program  -->  
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

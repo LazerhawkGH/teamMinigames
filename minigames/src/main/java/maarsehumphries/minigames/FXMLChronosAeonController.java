@@ -161,6 +161,7 @@ public class FXMLChronosAeonController implements Initializable {
         imgUser.setTranslateX(278);
         imgUser.setTranslateY(535);
         score=0;
+        enemySpeed=0;
     }
     
     private void move() {
@@ -226,21 +227,25 @@ public class FXMLChronosAeonController implements Initializable {
     }
 
     private int dir = 2; // Initial direction -> right
-     
+    private int enemySpeed = 0; 
+    private int wallsHit = 0; 
+    
     private void moveEnemies() {
        
         for (Rectangle e:enemies){            // Loops through each enemy to move each one, 
             if (cEnemies(e,rectBoundsRight)){ // If one of the enemies hits the wall on the right
                 dir = 1;                      // The direction of the enemies is changed to the opposite direction
+                wallsHit+=1;                
                 for (Rectangle h:enemies){    // Loops through again to move the enemies
-                    h.setTranslateY(h.getTranslateY() + 5);
+                    h.setTranslateY(h.getTranslateY() + 8);
                     h.setTranslateX(h.getTranslateX() - 5);
                 }
                 break;
             }else if (cEnemies(e,rectBoundsLeft)){ // If one of the enemies hits the wall on the left
                 dir = 2;                           // The direction of the enemies is changed to the opposite direction
+                wallsHit+=1;
                 for (Rectangle z:enemies){         // Loops through again to move the enemies
-                    z.setTranslateY(z.getTranslateY() + 5);
+                    z.setTranslateY(z.getTranslateY() + 8);
                     z.setTranslateX(z.getTranslateX() + 5);
                 }
                 break;
@@ -250,18 +255,22 @@ public class FXMLChronosAeonController implements Initializable {
                 movementEnemies.stop(); //
                 moveBullet.stop();      //
                 userMoving = false;
+                bulletCreated = false;
                 Alert alert = new Alert(AlertType.INFORMATION); 
-                alert.setTitle("You've failed us");
+                alert.setTitle("You've failed...");
                 alert.setHeaderText(null);
-                alert.setContentText("You have failed your duty," + "\n" + "we have no use for you here" + "\n" + "your contract has been terminated, effective immediately.");
+                alert.setContentText("You have failed your duty,");
                 Platform.runLater(alert::showAndWait); // Displays the alert box, must be in this format if used in a timer, as this one is
+            }
+            if (wallsHit==4){
+                enemySpeed+=1;
             }
             
             if (dir==1){       // Moves the enemies left
-                e.setTranslateX(e.getTranslateX() - 5);
+                e.setTranslateX(e.getTranslateX() - 5 - enemySpeed);
             }
             if (dir==2){ // Moves the enemies right
-                e.setTranslateX(e.getTranslateX() + 5);
+                e.setTranslateX(e.getTranslateX() + 5 + enemySpeed);
             }
         }
     }
