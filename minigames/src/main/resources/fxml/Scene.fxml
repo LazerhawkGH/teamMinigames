@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #282528;" stylesheets="@../styles/styles-new.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLMainMenu">
     <children>
-        <Button fx:id="btnG1" layoutX="114.0" layoutY="159.0" onAction="#handleButtonAction" prefHeight="94.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
+        <Button fx:id="btnG1" layoutX="114.0" layoutY="160.0" onAction="#handleButtonAction" prefHeight="94.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
          <graphic>
             <ImageView fitHeight="67.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +31,7 @@
                </effect>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="btnG3" layoutX="114.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="94.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
+      <Button fx:id="btnG3" layoutX="114.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="94.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
          <graphic>
             <ImageView fitHeight="74.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -52,6 +52,6 @@
          </effect>
       </ImageView>
       <Line endX="486.0" fill="WHITE" layoutX="114.0" layoutY="139.0" startX="-114.0" stroke="#5d575e" strokeLineCap="ROUND" strokeType="OUTSIDE" />
-      <Button layoutX="114.0" layoutY="536.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Store" />
+      <Button layoutX="114.0" layoutY="520.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Store" />
     </children>
 </AnchorPane>
