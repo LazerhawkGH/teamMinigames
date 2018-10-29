@@ -14,23 +14,15 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
-import java.util.ArrayList;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import java.util.ArrayList;
-import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -109,12 +101,15 @@ public class FXMLChronosAeonController implements Initializable {
     private int score = 0; // Score only for the current game, reset after every 'round'
                            // Used to check if the player has won
     
+    
+    private int scoreMult = 1;
+    
     private boolean collisionBullets(){
         for (Rectangle i:enemies){       // Goes through all of the enemies, sets 'i' as each one as it goes through
             if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
                 i.setLayoutX(-1000);     // Enemies that are hit are sent off the scene, where they can't interfere
                 i.setLayoutY(-1000);     // 
-                score+=10;
+                score+=10 * scoreMult;
                 setPoints(getPoints() + 10);         // Uses the global variable so that points may be used in other scenes 
                 lblPoints.setText("" + getPoints()); // Updates after every hit
                 return true;
@@ -128,14 +123,16 @@ public class FXMLChronosAeonController implements Initializable {
         return false;    
     }
     
+    private int upgrades = 0;
+    
     private void bulletMove(){  
         if (collisionBullets()){  // If the bullet hits an enemy, the bullet is moved, and can then be fired again
            bulletCreated=false;
            moveBullet.stop();
-           recBullet.setTranslateX(576);
-           recBullet.setTranslateY(89);          
+           recBullet.setTranslateX(10);
+           recBullet.setTranslateY(680);          
         }
-        recBullet.setTranslateY(recBullet.getTranslateY() - 6); // Otherwise, the bullet continues moving upwards
+        recBullet.setTranslateY(recBullet.getTranslateY() - 6 - upgrades); // Otherwise, the bullet continues moving upwards
     }
     
     //Handles all code for the resetting of the game, occurs after winning or losing
@@ -275,6 +272,7 @@ public class FXMLChronosAeonController implements Initializable {
                 Platform.runLater(alert::showAndWait); // Displays the alert box, must be in this format if used in a timer, as this one is
             }
             if (wallsHit==4){
+                wallsHit=0;
                 enemySpeed+=1;
             }
             if (lives==0){
@@ -297,6 +295,16 @@ public class FXMLChronosAeonController implements Initializable {
             }
         }
     }
+    
+    @FXML 
+    private void back(ActionEvent e){
+        try {
+            sceneChange();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     private void sceneChange() throws IOException{
         Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
             Scene home_page_scene = new Scene(home_page_parent);

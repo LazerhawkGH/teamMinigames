@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     
     public static int points = 0;
+    public static Boolean music1 = false;
 
     @Override
     public void start(Stage stage) throws Exception {

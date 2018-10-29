@@ -83,10 +83,11 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 
+    private int slowdown = 0;
     public void move() {
         s++;
         lblD.setText("Score: " + s);
-        imgO.setTranslateX(imgO.getTranslateX() - n);
+        imgO.setTranslateX(imgO.getTranslateX() - (n - slowdown));
         if (c(imgO, imgB)) {
             obstacles.stop();
             imgO.setEffect(null);
@@ -110,10 +111,6 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 
-    public void tim() {
-        lblD.setText("Score " + s++); //updates time of survival
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgB.setImage(B);
@@ -122,5 +119,7 @@ public class FXMLJumpDodgeController implements Initializable {
         jump.setCycleCount(Timeline.INDEFINITE);
         mb.setRadius(6);
         imgO.setTranslateX(300);
+        
+        
     }
 }
