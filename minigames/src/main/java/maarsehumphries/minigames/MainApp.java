@@ -16,8 +16,13 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
     
+    
+    // Each global variable created
     public static int points = 0;
-    public static Boolean music1 = false;
+    public static boolean boughtBullet = false;
+    public static boolean boughtScore = false;
+    public static boolean boughtObstacle = false;
+    public static boolean boughtObjective = false;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -39,6 +44,33 @@ public class MainApp extends Application {
         MainApp.points = points;
     }
     
+    public static Boolean getBulletUpgrade() {
+        return boughtBullet;
+    }
+    public static void setBulletUpgrade(boolean boughtBullet) {
+        MainApp.boughtBullet = boughtBullet;
+    }
+    
+    public static Boolean getScoreUpgrade() {
+        return boughtScore;
+    }
+    public static void setScoreUpgrade(boolean boughtScore) {
+        MainApp.boughtScore = boughtScore;
+    }
+    
+    public static Boolean getObstacleUpgrade() {
+        return boughtObstacle;
+    }
+    public static void setObstacleUpgrade(boolean boughtObstacle) {
+        MainApp.boughtObstacle = boughtObstacle;
+    }
+    
+    public static Boolean getObjectiveUpgrade() {
+        return boughtObjective;
+    }
+    public static void setObjectiveUpgrade(boolean boughtObjective) {
+        MainApp.boughtObjective = boughtObjective;
+    }
     
     public static void main(String[] args) {
         launch(args);
