@@ -5,6 +5,7 @@
  */
 package maarsehumphries.minigames;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,6 +23,11 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -29,6 +35,8 @@ import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import static maarsehumphries.minigames.MainApp.*;
+import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -44,6 +52,7 @@ public class FXMLChronosAeonController implements Initializable {
     @FXML private Rectangle rectBoundsRight;
     
     @FXML private Label lblPoints;
+    @FXML private Label lblLives;
     
     @FXML private Rectangle recBullet;
     
@@ -229,8 +238,9 @@ public class FXMLChronosAeonController implements Initializable {
     private int dir = 2; // Initial direction -> right
     private int enemySpeed = 0; 
     private int wallsHit = 0; 
+    private int lives = 3; 
     
-    private void moveEnemies() {
+    private void moveEnemies(){
        
         for (Rectangle e:enemies){            // Loops through each enemy to move each one, 
             if (cEnemies(e,rectBoundsRight)){ // If one of the enemies hits the wall on the right
@@ -256,6 +266,8 @@ public class FXMLChronosAeonController implements Initializable {
                 moveBullet.stop();      //
                 userMoving = false;
                 bulletCreated = false;
+                lives-=1;
+                lblLives.setText(""+ lives);
                 Alert alert = new Alert(AlertType.INFORMATION); 
                 alert.setTitle("You've failed...");
                 alert.setHeaderText(null);
@@ -265,7 +277,18 @@ public class FXMLChronosAeonController implements Initializable {
             if (wallsHit==4){
                 enemySpeed+=1;
             }
-            
+            if (lives==0){
+                Alert alert = new Alert(AlertType.INFORMATION); 
+                alert.setTitle("We're disappointed");
+                alert.setHeaderText(null);
+                alert.setContentText("That was your last draw, pack your bags");
+                Platform.runLater(alert::showAndWait); // Displays the alert box, must be in this format if used in a timer, as this one is
+                try {
+                    sceneChange();
+                } catch (IOException ex) {  // Has to throw IOException because of the sceneChange method, and how it operates
+                    ex.printStackTrace();
+                }
+            }
             if (dir==1){       // Moves the enemies left
                 e.setTranslateX(e.getTranslateX() - 5 - enemySpeed);
             }
@@ -273,6 +296,17 @@ public class FXMLChronosAeonController implements Initializable {
                 e.setTranslateX(e.getTranslateX() + 5 + enemySpeed);
             }
         }
+    }
+    private void sceneChange() throws IOException{
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage stage = (Stage) imgUser.getScene().getWindow();
+            stage.hide();
+            stage.setScene(home_page_scene);
+            stage.setTitle("Main Menu");
+            stage.show();
+            home_page_scene.getRoot().requestFocus();
+            stage.setOnCloseRequest(e -> System.exit(0));
     }
 
     
