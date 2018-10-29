@@ -42,7 +42,7 @@
                </effect>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="btnExit" layoutX="551.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Exit" />
+      <Button fx:id="btnExit" layoutX="535.0" layoutY="556.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="27.0" prefWidth="59.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Exit" />
       <ImageView fitHeight="139.0" fitWidth="473.0" layoutX="65.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../menutitle.png" />
