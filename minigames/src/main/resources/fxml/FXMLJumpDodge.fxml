@@ -22,5 +22,6 @@
             <Image url="@../JumpDodgeTitle.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblPoints" layoutX="553.0" layoutY="144.0" text="Points: " />
    </children>
 </AnchorPane>
