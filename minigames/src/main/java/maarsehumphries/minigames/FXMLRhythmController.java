@@ -16,9 +16,15 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import static maarsehumphries.minigames.MainApp.*;
 
 public class FXMLRhythmController implements Initializable {
+
 
     @FXML private Label lblTest;
     @FXML private ImageView imgUser;
@@ -26,13 +32,17 @@ public class FXMLRhythmController implements Initializable {
     @FXML private Button btnStart;
     @FXML private ImageView imgB;
 
+
     Timeline approach = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
     Timeline stop = new Timeline(new KeyFrame(Duration.millis(500), ae -> top()));
 
     int rand = 1;
-    int h = 4;
+    int h = 3;
     int s = 0;
-    private int upgrade=0;
+
+    int success = 0;
+    int remain = 0;
+
 
     private boolean left = false;
     private boolean right = false;
@@ -47,6 +57,9 @@ public class FXMLRhythmController implements Initializable {
             choose();
             approach.play();
             h = 4;
+
+            remain = 30;
+
         }
     }
 
@@ -63,6 +76,17 @@ public class FXMLRhythmController implements Initializable {
         if (event.getCode() == KeyCode.UP) {
             up = true;
         }
+
+        if (event.getCode() == KeyCode.ESCAPE) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Exiting to Main Menu");
+            alert.setHeaderText("Do you wish to return to the main menu?");
+            ButtonType btnYes = new ButtonType("Yes");
+            ButtonType btnNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(btnYes, btnNo);
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+
     }
 
     public void keyRelease(KeyEvent event) {
@@ -85,44 +109,72 @@ public class FXMLRhythmController implements Initializable {
         approach.setCycleCount(Timeline.INDEFINITE);
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
-        
-        if (boughtObjective){
-            upgrade= 2;
-        }
     }
 
+
+
     private void move() {
-        imgU.setTranslateY(imgU.getTranslateY() + (h - upgrade));
+
+        imgU.setTranslateY(imgU.getTranslateY() + h);
         if (c(imgU, imgUser)) {
             if (list.get(0) == 1 && left == true) {
                 list.removeAll(list);
                 choose();
                 imgU.setTranslateY(-100);
+
+                success++;
+                remain--;
+
             }
             if (list.get(0) == 2 && up == true) {
                 list.removeAll(list);
                 choose();
                 imgU.setTranslateY(-100);
+
+                success++;
+                remain--;
+
             }
             if (list.get(0) == 3 && down == true) {
                 list.removeAll(list);
                 choose();
                 imgU.setTranslateY(-100);
+
+                success++;
+                remain--;
+
             }
             if (list.get(0) == 4 && right == true) {
                 list.removeAll(list);
                 choose();
                 imgU.setTranslateY(-100);
+
+                success++;
+                remain--;
             }
         }
         if (c(imgU, imgB)) {
+            remain --;
+            if(remain == 0){
+            approach.stop();
+            }
             list.removeAll(list);
             choose();
             imgU.setTranslateY(-100);
+            if (h >= 4) {
+                h--;
+            }
+
         }
     }
 
     public void choose() {
+
+        if (success > 3 && h > 8) {
+            h++;
+            success = 0;
+        }
+
         rand = ThreadLocalRandom.current().nextInt(1, 4 + 1);
         switch (rand) {
             case 1:
@@ -156,7 +208,5 @@ public class FXMLRhythmController implements Initializable {
         list.removeAll(list);
         choose();
         imgU.setTranslateY(-100);
-        
-       
     }
 }

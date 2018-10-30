@@ -1,3 +1,4 @@
+
 /*
 Shayne Humphries
 
@@ -5,6 +6,7 @@ Shayne Humphries
 package maarsehumphries.minigames;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,7 +14,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.MotionBlur;
 import javafx.scene.image.Image;
@@ -40,10 +45,17 @@ public class FXMLJumpDodgeController implements Initializable {
     private ImageView imgT;
     @FXML
     private Button btnGame;
+
+    @FXML
+    private Label lblPoints;
+
     int s = 0;
     int m = 20;
     int n = 4;
     int e = 0;
+
+    int f = 0;
+
     MotionBlur mb = new MotionBlur();
 
     Image G = new Image(getClass().getResource("/Stop sign.png").toString());
@@ -56,10 +68,22 @@ public class FXMLJumpDodgeController implements Initializable {
     }
 
     public void keyPressed(KeyEvent event) {
+
+        if (event.getCode() == KeyCode.ESCAPE) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Exiting to Main Menu");
+            alert.setHeaderText("Do you wish to return to the main menu?");
+            ButtonType btnYes = new ButtonType("Yes");
+            ButtonType btnNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(btnYes, btnNo);
+            Optional<ButtonType> result = alert.showAndWait();
+            
+        }
         if (event.getCode() == KeyCode.SPACE) {
             if (c(imgB, imgG)) {
                 imgB.setTranslateY(imgB.getTranslateY() - 5);
-                m = 20;
+                m = 50;
+
                 jump.play();
             }
         }
@@ -83,12 +107,18 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 
+
     private int slowdown = 0;
     
     public void move() {
-        s++;
+
+        f += n - 3;
+        if (f > 70) {
+            s++;
+        }
+
         lblD.setText("Score: " + s);
-        imgO.setTranslateX(imgO.getTranslateX() - (n - slowdown));
+        imgO.setTranslateX(imgO.getTranslateX() - n);
         if (c(imgO, imgB)) {
             obstacles.stop();
             imgO.setEffect(null);
@@ -99,8 +129,11 @@ public class FXMLJumpDodgeController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Your Score was " + s + "!");
             alert.show();
+
+            lblPoints.setText("Points " + getPoints() + s);
             s = 0;
-            lblD.setText("Score: " + s);
+            lblD.setText("Score: 0");
+
         }
         if (c(imgT, imgO)) {
             imgO.setTranslateX(300);
@@ -112,14 +145,19 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        setPoints(getPoints());
+        s = getPoints();
+        lblPoints.setText("Points: " + getPoints());
         imgB.setImage(B);
         imgG.setImage(G);
         imgT.setTranslateX(-100);
         jump.setCycleCount(Timeline.INDEFINITE);
         mb.setRadius(6);
         imgO.setTranslateX(300);
+
         
         if (boughtObstacle){
             slowdown=2;
@@ -127,3 +165,4 @@ public class FXMLJumpDodgeController implements Initializable {
         
     }
 }
+
