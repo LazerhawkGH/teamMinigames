@@ -5,21 +5,40 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" onKeyReleased="#keyRelease" prefHeight="511.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLRhythmController">
+<AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" onKeyReleased="#keyRelease" prefHeight="511.0" prefWidth="617.0" style="-fx-background-color: #ad47f7;" stylesheets="@../styles/styles-new.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLRhythmController">
     <children>
-        <Label fx:id="lblScore" layoutX="7.0" layoutY="489.0" minHeight="16" minWidth="69" text="Score:" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="190.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="620.0">
+         <fill>
+            <LinearGradient endX="0.9761904761904762" endY="0.9857142857142858" startX="0.06666666666666667" startY="0.12857142857142856">
+               <stops>
+                  <Stop color="#8949eb" />
+                  <Stop color="#8949eb" offset="0.007662835249042145" />
+                  <Stop color="#75c6aa" offset="0.21862779950231062" />
+                  <Stop color="#77a3e0" offset="0.39226606627957483" />
+                  <Stop color="#76c4a9" offset="0.6271280167476397" />
+                  <Stop color="#8948eb" offset="0.7969348659003831" />
+                  <Stop color="#77a3e0" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+        <Label fx:id="lblScore" layoutX="77.0" layoutY="148.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score: 0" />
       <ImageView fx:id="imgUser" fitHeight="78.0" fitWidth="607.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgU" fitHeight="48.0" fitWidth="50.0" layoutX="279.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Xmark.png" />
+            <Image url="@../arrowR.png" />
          </image></ImageView>
       <ImageView fx:id="imgB" fitHeight="7.0" fitWidth="607.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="127.0" fitWidth="319.0" layoutX="144.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="127.0" fitWidth="319.0" layoutX="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../rhythm.png" />
          </image>
       </ImageView>
-      <Button focusTraversable="false" layoutX="277.0" layoutY="166.0" mnemonicParsing="false" onAction="#Begin" text="Begin" />
+      <Button focusTraversable="false" layoutX="274.0" layoutY="148.0" mnemonicParsing="false" onAction="#Begin" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Begin" />
+      <Label fx:id="lblPoints" layoutX="447.0" layoutY="148.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Points: 0" />
     </children>
 </AnchorPane>
