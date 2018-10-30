@@ -160,7 +160,7 @@ public class FXMLJumpDodgeController implements Initializable {
         jump.setCycleCount(Timeline.INDEFINITE);
         imgO.setTranslateX(300);
       
-        setObstacleUpgrade(getObstacleUpgrade);
+        setObstacleUpgrade(getObstacleUpgrade());
       
         if (boughtObstacle){
           upgrade=2;
