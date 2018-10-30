@@ -1,3 +1,4 @@
+
 /*
 Shayne Humphries
 
@@ -110,7 +111,9 @@ public class FXMLJumpDodgeController implements Initializable {
             jump.stop(); //stops timer if user collides with ground
         }
     }
-
+  
+    private int upgrade = 0;
+  
     public void move() {
 
         f += n - 3;
@@ -119,7 +122,7 @@ public class FXMLJumpDodgeController implements Initializable {
         }
 
         lblD.setText("Score: " + s);
-        imgO.setTranslateX(imgO.getTranslateX() - n);
+        imgO.setTranslateX(imgO.getTranslateX() - (n - upgrade));
         if (c(imgO, imgB)) {
             obstacles.stop();
             imgO.setEffect(null);
@@ -156,5 +159,12 @@ public class FXMLJumpDodgeController implements Initializable {
         imgT.setTranslateX(-100);
         jump.setCycleCount(Timeline.INDEFINITE);
         imgO.setTranslateX(300);
+      
+        setObstacleUpgrade(getObstacleUpgrade);
+      
+        if (boughtObstacle){
+          upgrade=2;
+        }
     }
 }
+

@@ -14,23 +14,15 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
-import java.util.ArrayList;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import java.util.ArrayList;
-import java.util.Optional;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -79,9 +71,21 @@ public class FXMLChronosAeonController implements Initializable {
     private Boolean leftYes = false;  //                                                             //
     private Boolean rightYes = false; /////////////////////////////////////////////////////////////////
     
-    private Boolean gameStarted = false; 
-    private Boolean userMoving = false;
-    private Boolean bulletCreated = false;
+    private Boolean userMoving = false; // Used later to prevent timers from being stacked on top of each other
+    private Boolean bulletCreated = false; // Makes sure only one instance of the bullet moving is created
+    
+    private int dir = 2; // Initial direction -> right
+    private int enemySpeed = 0; // Current speed of the enemies, altered by 'wallsHit'
+    private int wallsHit = 0; // Used in an if statement to check when to speed up the enemies
+    private int lives = 3;    // Number of lives the user has
+    
+    private int score = 0; // Score only for the current game, reset after every 'round'
+                           // Used to check if the player has won
+    
+    private int scoreMult = 1; // Two variables used for the store bought upgrades
+    private int upgrades = 0;  // By default will be a value that will not affect the game
+    
+    MediaPlayer player; // Created here so garbage collector doesn't get rid of it
     
     Rectangle[] z;       // Creates two empty arrays, will be filled during initialization
     Rectangle[] enemies; // 
@@ -106,15 +110,13 @@ public class FXMLChronosAeonController implements Initializable {
         return false;
     }
 
-    private int score = 0; // Score only for the current game, reset after every 'round'
-                           // Used to check if the player has won
-    
+       
     private boolean collisionBullets(){
         for (Rectangle i:enemies){       // Goes through all of the enemies, sets 'i' as each one as it goes through
             if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
                 i.setLayoutX(-1000);     // Enemies that are hit are sent off the scene, where they can't interfere
                 i.setLayoutY(-1000);     // 
-                score+=10;
+                score+=10 * scoreMult;   // Adds points for every hit, if the shop upgrade is bought the points are doubled
                 setPoints(getPoints() + 10);         // Uses the global variable so that points may be used in other scenes 
                 lblPoints.setText("" + getPoints()); // Updates after every hit
                 return true;
@@ -128,14 +130,15 @@ public class FXMLChronosAeonController implements Initializable {
         return false;    
     }
     
+       
     private void bulletMove(){  
         if (collisionBullets()){  // If the bullet hits an enemy, the bullet is moved, and can then be fired again
            bulletCreated=false;
            moveBullet.stop();
-           recBullet.setTranslateX(576);
-           recBullet.setTranslateY(89);          
+           recBullet.setTranslateX(10);
+           recBullet.setTranslateY(680);          
         }
-        recBullet.setTranslateY(recBullet.getTranslateY() - 6); // Otherwise, the bullet continues moving upwards
+        recBullet.setTranslateY(recBullet.getTranslateY() - 6 - upgrades); // Otherwise, the bullet continues moving upwards
     }
     
     //Handles all code for the resetting of the game, occurs after winning or losing
@@ -174,9 +177,9 @@ public class FXMLChronosAeonController implements Initializable {
     }
     
     private void move() {
-        if (score==360){  // If the user has hit all of the enemies (10x36=360), then a pop-up notifies the user
-            reset();      // of their victory
-            movement.stop();        //Stops all of the timers to prevent any unnecessary movement
+        if (score==360 || score == 720){  // If the user has hit all of the enemies (10x36=360) or (20x36=720), then a pop-up notifies the user
+            reset();                      // of their victory
+            movement.stop();        // Stops all of the timers to prevent any unnecessary movement
             movementEnemies.stop(); //
             moveBullet.stop();      //
             userMoving = false;
@@ -186,6 +189,7 @@ public class FXMLChronosAeonController implements Initializable {
             alert.setContentText("You have defeated all of the ships!");
             Platform.runLater(alert::showAndWait);
         }
+        
         // If the user isn't colliding with a wall, and a direction has been inputted, move them in the direction
         if (upYes == true && !collisionLoop()) {
             imgUser.setTranslateY(imgUser.getTranslateY() - 5);
@@ -234,11 +238,6 @@ public class FXMLChronosAeonController implements Initializable {
             }
         }
     }
-
-    private int dir = 2; // Initial direction -> right
-    private int enemySpeed = 0; 
-    private int wallsHit = 0; 
-    private int lives = 3; 
     
     private void moveEnemies(){
        
@@ -274,7 +273,8 @@ public class FXMLChronosAeonController implements Initializable {
                 alert.setContentText("You have failed your duty,");
                 Platform.runLater(alert::showAndWait); // Displays the alert box, must be in this format if used in a timer, as this one is
             }
-            if (wallsHit==4){
+            if (wallsHit==4){ // After hitting the wall four times, the enemies speed up
+                wallsHit=0;
                 enemySpeed+=1;
             }
             if (lives==0){
@@ -289,7 +289,7 @@ public class FXMLChronosAeonController implements Initializable {
                     ex.printStackTrace();
                 }
             }
-            if (dir==1){       // Moves the enemies left
+            if (dir==1){ // Moves the enemies left
                 e.setTranslateX(e.getTranslateX() - 5 - enemySpeed);
             }
             if (dir==2){ // Moves the enemies right
@@ -297,16 +297,26 @@ public class FXMLChronosAeonController implements Initializable {
             }
         }
     }
+    
+    @FXML 
+    private void back(ActionEvent e){
+        try {
+            sceneChange();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     private void sceneChange() throws IOException{
         Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
-            Scene home_page_scene = new Scene(home_page_parent);
-            Stage stage = (Stage) imgUser.getScene().getWindow();
-            stage.hide();
-            stage.setScene(home_page_scene);
-            stage.setTitle("Main Menu");
-            stage.show();
-            home_page_scene.getRoot().requestFocus();
-            stage.setOnCloseRequest(e -> System.exit(0));
+        Scene home_page_scene = new Scene(home_page_parent);
+        Stage stage = (Stage) imgUser.getScene().getWindow();
+        stage.hide();
+        stage.setScene(home_page_scene);
+        stage.setTitle("Main Menu");
+        stage.show();
+        home_page_scene.getRoot().requestFocus();
+        stage.setOnCloseRequest(e -> System.exit(0));
     }
 
     
@@ -362,8 +372,7 @@ public class FXMLChronosAeonController implements Initializable {
         }
     }
     
-    MediaPlayer player;
-    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initializes both arrays, will be used later for movement/collision
@@ -373,12 +382,26 @@ public class FXMLChronosAeonController implements Initializable {
         setPoints(getPoints());   // Obtains the amount of points the user has, sets a label box to that amount
         lblPoints.setText("" + getPoints());
         
+        // Variables initialized with default values
         score=0;
         bulletCreated = false;
         userMoving = false;
         
         player = new MediaPlayer((new Media(getClass().getResource("/Rasputin 8Bit.mp3").toString())));
         player.play();
+        
+        
+        // Handles the global variables, checks for either one being bought
+        setBulletUpgrade(getBulletUpgrade());
+        setScoreUpgrade(getScoreUpgrade());
+        
+        if (boughtBullet){ // If the bullet upgrade has been bought, make the necessary changes
+            upgrades = 2;
+        }
+        
+        if (boughtScore){
+            scoreMult = 2;
+        }
     }
 
 }
