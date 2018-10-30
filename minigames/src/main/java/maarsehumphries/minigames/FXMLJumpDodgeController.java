@@ -149,7 +149,7 @@ public class FXMLJumpDodgeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        player = new MediaPlayer((new Media(getClass().getResource("//RockyTheme.mp3").toString())));
+        player = new MediaPlayer((new Media(getClass().getResource("/HellMarch.mp3").toString())));
         player.play();
         setPoints(getPoints());
         lblPoints.setText("Points: " + getPoints());
