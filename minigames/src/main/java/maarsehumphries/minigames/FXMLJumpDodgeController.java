@@ -1,4 +1,3 @@
-
 /*
 Shayne Humphries
 
@@ -28,6 +27,7 @@ import javafx.util.Duration;
 import static maarsehumphries.minigames.MainApp.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
@@ -68,6 +68,7 @@ public class FXMLJumpDodgeController implements Initializable {
     private boolean c(ImageView block1, ImageView block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
+
 
     public void keyPressed(KeyEvent event) {
 
@@ -167,4 +168,5 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 }
+
 

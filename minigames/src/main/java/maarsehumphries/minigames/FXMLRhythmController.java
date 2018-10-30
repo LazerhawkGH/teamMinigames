@@ -1,3 +1,4 @@
+
 package maarsehumphries.minigames;
 
 import java.net.URL;
@@ -31,13 +32,13 @@ public class FXMLRhythmController implements Initializable {
     @FXML private ImageView imgU;
     @FXML private Button btnStart;
     @FXML private ImageView imgB;
-
+    @FXML private Label lblPoints;
 
     Timeline approach = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
     Timeline stop = new Timeline(new KeyFrame(Duration.millis(500), ae -> top()));
 
     int rand = 1;
-    int h = 4;
+    int h = 3;
     int s = 0;
 
     int success = 0;
@@ -64,7 +65,7 @@ public class FXMLRhythmController implements Initializable {
     }
 
     public void keyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
+        if (event.getCode() == KeyCode.LEFT) { // makes boolean true for when key is pressed
             left = true;
         }
         if (event.getCode() == KeyCode.RIGHT) {
@@ -77,7 +78,7 @@ public class FXMLRhythmController implements Initializable {
             up = true;
         }
 
-        if (event.getCode() == KeyCode.ESCAPE) {
+        if (event.getCode() == KeyCode.ESCAPE) { // opens alert to see if user wants to return to the main menu
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Exiting to Main Menu");
             alert.setHeaderText("Do you wish to return to the main menu?");
@@ -90,7 +91,7 @@ public class FXMLRhythmController implements Initializable {
     }
 
     public void keyRelease(KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
+        if (event.getCode() == KeyCode.LEFT) { // if the key is released it will turn the variable from true to false
             left = false;
         }
         if (event.getCode() == KeyCode.RIGHT) {
@@ -109,17 +110,12 @@ public class FXMLRhythmController implements Initializable {
         approach.setCycleCount(Timeline.INDEFINITE);
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
-        
-        if (boughtObjective){
-            upgrade= 2;
-        }
     }
 
-    private int upgrade = 0;
+
 
     private void move() {
-
-        imgU.setTranslateY(imgU.getTranslateY() + (h - upgrade));
+        imgU.setTranslateY(imgU.getTranslateY() + h);
         if (c(imgU, imgUser)) {
             if (list.get(0) == 1 && left == true) {
                 list.removeAll(list);
@@ -207,6 +203,7 @@ public class FXMLRhythmController implements Initializable {
     public boolean c(ImageView block1, ImageView block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
+        
 
     private void top() {
         list.removeAll(list);
@@ -214,3 +211,4 @@ public class FXMLRhythmController implements Initializable {
         imgU.setTranslateY(-100);
     }
 }
+
