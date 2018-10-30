@@ -26,7 +26,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import static maarsehumphries.minigames.MainApp.*;
-
 /**
  * FXML Controller class
  *
@@ -108,6 +107,9 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 
+
+    private int slowdown = 0;
+    
     public void move() {
 
         f += n - 3;
@@ -155,6 +157,12 @@ public class FXMLJumpDodgeController implements Initializable {
         jump.setCycleCount(Timeline.INDEFINITE);
         mb.setRadius(6);
         imgO.setTranslateX(300);
+
+        
+        if (boughtObstacle){
+            slowdown=2;
+        }
+        
     }
 }
 
