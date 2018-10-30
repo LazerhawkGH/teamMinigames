@@ -1,3 +1,4 @@
+
 package maarsehumphries.minigames;
 
 import java.net.URL;
@@ -210,3 +211,4 @@ public class FXMLRhythmController implements Initializable {
         imgU.setTranslateY(-100);
     }
 }
+
