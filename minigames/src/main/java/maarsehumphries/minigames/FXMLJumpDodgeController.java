@@ -134,8 +134,8 @@ public class FXMLJumpDodgeController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Your Score was " + s + "!");
             alert.show();
-
-            lblPoints.setText("Points " + getPoints() + s);
+            setPoints(getPoints() + s);
+            lblPoints.setText("Points " + getPoints());
             s = 0;
             lblD.setText("Score: 0");
 

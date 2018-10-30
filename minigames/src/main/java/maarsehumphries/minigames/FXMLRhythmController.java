@@ -1,4 +1,8 @@
-
+/*
+ * Name: Zachary Maarse & Shayne Humphries
+ * Date: October 15th, 2018
+ * Purpose: Allows the user to play a game where you must press specific keys when the objects move to the correct location
+ */
 package maarsehumphries.minigames;
 
 import java.net.URL;
