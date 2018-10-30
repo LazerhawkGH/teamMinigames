@@ -26,6 +26,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import static maarsehumphries.minigames.MainApp.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  * FXML Controller class
  *
@@ -45,7 +48,6 @@ public class FXMLJumpDodgeController implements Initializable {
     private ImageView imgT;
     @FXML
     private Button btnGame;
-
     @FXML
     private Label lblPoints;
 
@@ -58,10 +60,10 @@ public class FXMLJumpDodgeController implements Initializable {
 
     MotionBlur mb = new MotionBlur();
 
-    Image G = new Image(getClass().getResource("/Stop sign.png").toString());
-    Image B = new Image(getClass().getResource("/link attack.png").toString());
     Timeline jump = new Timeline(new KeyFrame(Duration.millis(20), ae -> up()));
     Timeline obstacles = new Timeline(new KeyFrame(Duration.millis(10), ae -> move()));
+    
+    MediaPlayer player;
 
     private boolean c(ImageView block1, ImageView block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
@@ -70,20 +72,22 @@ public class FXMLJumpDodgeController implements Initializable {
     public void keyPressed(KeyEvent event) {
 
         if (event.getCode() == KeyCode.ESCAPE) {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
+           Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Exiting to Main Menu");
             alert.setHeaderText("Do you wish to return to the main menu?");
             ButtonType btnYes = new ButtonType("Yes");
             ButtonType btnNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(btnYes, btnNo);
-            Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> result = alert.showAndWait(); 
             
         }
         if (event.getCode() == KeyCode.SPACE) {
             if (c(imgB, imgG)) {
                 imgB.setTranslateY(imgB.getTranslateY() - 5);
                 m = 50;
-
+                mb.setRadius(4);
+                mb.setAngle(90);
+                imgB.setEffect(mb);
                 jump.play();
             }
         }
@@ -94,6 +98,7 @@ public class FXMLJumpDodgeController implements Initializable {
         obstacles.setCycleCount(Timeline.INDEFINITE);
         obstacles.play();       //starts various timers
         btnGame.setDisable(true);
+        mb.setRadius(6);
         imgO.setEffect(mb);
         n = 4;
         e = 0;
@@ -106,10 +111,9 @@ public class FXMLJumpDodgeController implements Initializable {
             jump.stop(); //stops timer if user collides with ground
         }
     }
-
-
-    private int slowdown = 0;
-    
+  
+    private int upgrade = 0;
+  
     public void move() {
 
         f += n - 3;
@@ -118,7 +122,7 @@ public class FXMLJumpDodgeController implements Initializable {
         }
 
         lblD.setText("Score: " + s);
-        imgO.setTranslateX(imgO.getTranslateX() - n);
+        imgO.setTranslateX(imgO.getTranslateX() - (n - upgrade));
         if (c(imgO, imgB)) {
             obstacles.stop();
             imgO.setEffect(null);
@@ -148,21 +152,19 @@ public class FXMLJumpDodgeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        player = new MediaPlayer((new Media(getClass().getResource("/HellMarch.mp3").toString())));
+        player.play();
         setPoints(getPoints());
-        s = getPoints();
         lblPoints.setText("Points: " + getPoints());
-        imgB.setImage(B);
-        imgG.setImage(G);
         imgT.setTranslateX(-100);
         jump.setCycleCount(Timeline.INDEFINITE);
-        mb.setRadius(6);
         imgO.setTranslateX(300);
-
-        
+      
+        setObstacleUpgrade(getObstacleUpgrade);
+      
         if (boughtObstacle){
-            slowdown=2;
+          upgrade=2;
         }
-        
     }
 }
 

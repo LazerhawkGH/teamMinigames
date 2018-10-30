@@ -5,23 +5,42 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" prefHeight="718.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLJumpDodgeController">
+<AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" prefHeight="724.0" prefWidth="769.0" style="-fx-background-color: #bbdbed;" stylesheets="@../styles/styles-new.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLJumpDodgeController">
    <children>
-      <ImageView fx:id="imgB" fitHeight="114.0" fitWidth="118.0" layoutX="24.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgO" fitHeight="64.0" fitWidth="56.0" layoutX="588.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="150.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="777.0">
+         <fill>
+            <LinearGradient endX="0.8666666666666666" endY="0.6714285714285714" startX="0.8666666666666667" startY="0.2238095238095238">
+               <stops>
+                  <Stop color="#6894bc" />
+                  <Stop color="#b9d9eb9f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fx:id="imgB" fitHeight="90.0" fitWidth="157.0" layoutX="23.0" layoutY="609.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../DinoRun.gif" />
+         </image></ImageView>
+      <ImageView fx:id="imgO" fitHeight="64.0" fitWidth="56.0" layoutX="588.0" layoutY="654.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../rock.png" />
          </image></ImageView>
-      <ImageView fx:id="imgG" fitHeight="149.0" fitWidth="777.0" layoutX="-2.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnGame" focusTraversable="false" layoutX="122.0" layoutY="119.0" mnemonicParsing="false" onAction="#Begin" text="Start" />
-      <Label fx:id="lblD" layoutX="546.0" layoutY="123.0" text="Score: 0" />
+      <ImageView fx:id="imgG" fitHeight="25.0" fitWidth="777.0" layoutX="-2.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../test.png" />
+         </image></ImageView>
+      <Button fx:id="btnGame" focusTraversable="false" layoutX="333.0" layoutY="150.0" mnemonicParsing="false" onAction="#Begin" prefHeight="35.0" prefWidth="107.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Start" />
+      <Label fx:id="lblD" layoutX="100.0" layoutY="123.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Score: 0" />
       <ImageView fx:id="imgT" fitHeight="496.0" fitWidth="5.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="165.0" fitWidth="707.0" layoutX="35.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../JumpDodgeTitle.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPoints" layoutX="553.0" layoutY="144.0" text="Points: " />
+      <Label fx:id="lblPoints" layoutX="588.0" layoutY="123.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Points: 0" />
    </children>
 </AnchorPane>

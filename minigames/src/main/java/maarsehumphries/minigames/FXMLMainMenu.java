@@ -20,7 +20,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class FXMLMainMenu implements Initializable {
-    
+
     @FXML
     private Button btnG1;
     @FXML
@@ -29,6 +29,8 @@ public class FXMLMainMenu implements Initializable {
     private Button btnG3;
     @FXML
     private Button btnExit;
+    @FXML
+    private Button btnStore;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -68,7 +70,17 @@ public class FXMLMainMenu implements Initializable {
             home_page_scene.getRoot().requestFocus();
             stage.setOnCloseRequest(e -> System.exit(0));
         }
-
+        if (btnStore.isArmed()) {
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLShop.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.hide();
+            stage.setScene(home_page_scene);
+            stage.setTitle("Welcome to the Store!");
+            stage.show();
+            home_page_scene.getRoot().requestFocus();
+            stage.setOnCloseRequest(e -> System.exit(0));
+        }
     }
 
     @Override
