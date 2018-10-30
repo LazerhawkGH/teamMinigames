@@ -16,6 +16,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
+import static maarsehumphries.minigames.MainApp.*;
 
 public class FXMLRhythmController implements Initializable {
 
@@ -31,6 +32,7 @@ public class FXMLRhythmController implements Initializable {
     int rand = 1;
     int h = 4;
     int s = 0;
+    private int upgrade=0;
 
     private boolean left = false;
     private boolean right = false;
@@ -83,10 +85,14 @@ public class FXMLRhythmController implements Initializable {
         approach.setCycleCount(Timeline.INDEFINITE);
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
+        
+        if (boughtObjective){
+            upgrade= 2;
+        }
     }
 
     private void move() {
-        imgU.setTranslateY(imgU.getTranslateY() + h);
+        imgU.setTranslateY(imgU.getTranslateY() + (h - upgrade));
         if (c(imgU, imgUser)) {
             if (list.get(0) == 1 && left == true) {
                 list.removeAll(list);
@@ -150,5 +156,7 @@ public class FXMLRhythmController implements Initializable {
         list.removeAll(list);
         choose();
         imgU.setTranslateY(-100);
+        
+       
     }
 }

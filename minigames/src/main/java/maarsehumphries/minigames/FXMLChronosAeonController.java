@@ -395,7 +395,7 @@ public class FXMLChronosAeonController implements Initializable {
         setBulletUpgrade(getBulletUpgrade());
         setScoreUpgrade(getScoreUpgrade());
         
-        if (boughtBullet){
+        if (boughtBullet){ // If the bullet upgrade has been bought, make the necessary changes
             upgrades = 2;
         }
         
