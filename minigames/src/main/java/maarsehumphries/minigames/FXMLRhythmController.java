@@ -31,7 +31,7 @@ public class FXMLRhythmController implements Initializable {
     @FXML private ImageView imgU;
     @FXML private Button btnStart;
     @FXML private ImageView imgB;
-
+    @FXML private Label lblPoints;
 
     Timeline approach = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
     Timeline stop = new Timeline(new KeyFrame(Duration.millis(500), ae -> top()));
@@ -64,7 +64,7 @@ public class FXMLRhythmController implements Initializable {
     }
 
     public void keyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
+        if (event.getCode() == KeyCode.LEFT) { // makes boolean true for when key is pressed
             left = true;
         }
         if (event.getCode() == KeyCode.RIGHT) {
@@ -77,7 +77,7 @@ public class FXMLRhythmController implements Initializable {
             up = true;
         }
 
-        if (event.getCode() == KeyCode.ESCAPE) {
+        if (event.getCode() == KeyCode.ESCAPE) { // opens alert to see if user wants to return to the main menu
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Exiting to Main Menu");
             alert.setHeaderText("Do you wish to return to the main menu?");
@@ -90,7 +90,7 @@ public class FXMLRhythmController implements Initializable {
     }
 
     public void keyRelease(KeyEvent event) {
-        if (event.getCode() == KeyCode.LEFT) {
+        if (event.getCode() == KeyCode.LEFT) { // if the key is released it will turn the variable from true to false
             left = false;
         }
         if (event.getCode() == KeyCode.RIGHT) {
@@ -114,7 +114,6 @@ public class FXMLRhythmController implements Initializable {
 
 
     private void move() {
-
         imgU.setTranslateY(imgU.getTranslateY() + h);
         if (c(imgU, imgUser)) {
             if (list.get(0) == 1 && left == true) {
@@ -203,6 +202,7 @@ public class FXMLRhythmController implements Initializable {
     public boolean c(ImageView block1, ImageView block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
+        
 
     private void top() {
         list.removeAll(list);
