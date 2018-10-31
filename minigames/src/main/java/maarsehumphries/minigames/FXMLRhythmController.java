@@ -54,11 +54,10 @@ public class FXMLRhythmController implements Initializable {
     private Label lblScore;
 
     Timeline approach = new Timeline(new KeyFrame(Duration.millis(15), ae -> move()));
-    Timeline stop = new Timeline(new KeyFrame(Duration.millis(500), ae -> top()));
 
     int rand = 1;
     int h = 4;
-    int s = 0;
+    int s = 0; // score in a play session
 
     int success = 0;
     int remain = 0;
@@ -74,7 +73,7 @@ public class FXMLRhythmController implements Initializable {
 
     Image Up = new Image(getClass().getResource("/arrowU.png").toString());
     Image Down = new Image(getClass().getResource("/arrowD.png").toString());
-    Image Right = new Image(getClass().getResource("/arrowR.png").toString());
+    Image Right = new Image(getClass().getResource("/arrowR.png").toString());  // gathers and puts images of arrows in variables
     Image Left = new Image(getClass().getResource("/arrowL.png").toString());
 
     public void Begin(ActionEvent event) {
@@ -111,7 +110,7 @@ public class FXMLRhythmController implements Initializable {
             alert.getButtonTypes().setAll(btnYes, btnNo);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == btnYes) {
-                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+                Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml")); // loads up the main menu
                 Scene home_page_scene = new Scene(home_page_parent);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.hide();
@@ -119,7 +118,7 @@ public class FXMLRhythmController implements Initializable {
                 stage.setTitle("Main Menu");
                 stage.show();
                 stage.setOnCloseRequest(e -> System.exit(0));
-                player.stop();
+                player.stop(); // stops the music so that there is no audio overlap
                 gameover();
             }
         }
@@ -147,7 +146,7 @@ public class FXMLRhythmController implements Initializable {
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
 
-        player = new MediaPlayer((new Media(getClass().getResource("/StayingAlive.mp3").toString())));
+        player = new MediaPlayer((new Media(getClass().getResource("/StayingAlive.mp3").toString()))); 
         player.play();
         lblPoints.setText("Points: "+ getPoints());
     
@@ -224,8 +223,8 @@ public class FXMLRhythmController implements Initializable {
             list.removeAll(list);
             choose();
             imgU.setTranslateY(-100);
-            if (h >= 4) {
-                h--;
+            if (h >= 5) {
+                h-= 2;
             }
 
         }
@@ -274,12 +273,5 @@ public class FXMLRhythmController implements Initializable {
         lblScore.setText("Score: 0");
     }
 
-    private void top() {
-        list.removeAll(list);
-        choose();
-        imgU.setTranslateY(-100);
-        
-        
-    }
 }
 

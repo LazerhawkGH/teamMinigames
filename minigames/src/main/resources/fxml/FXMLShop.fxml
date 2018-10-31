@@ -24,7 +24,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a6ff" height="5.0" stroke="#00a6ff" strokeType="INSIDE" width="700.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a6ff" height="5.0" layoutY="695.0" stroke="#00a6ff" strokeType="INSIDE" width="700.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a6ff" height="5.0" layoutY="127.0" stroke="#00a6ff" strokeType="INSIDE" width="700.0" />
-      <Button layoutX="363.0" layoutY="149.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Faster Bullet: 1000pts">
+      <Button fx:id="btnBullet" layoutX="363.0" layoutY="149.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Faster Bullet: 1000pts">
          <font>
             <Font size="17.0" />
          </font>
@@ -38,7 +38,7 @@
          </effect>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00a6ff" height="5.0" layoutY="272.0" stroke="#00a6ff" strokeType="INSIDE" width="700.0" />
-      <Button layoutX="363.0" layoutY="199.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score Multiplier (x2): 5000pts">
+      <Button fx:id="btnScore" layoutX="363.0" layoutY="199.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score Multiplier (x2): 5000pts">
          <font>
             <Font size="17.0" />
          </font>
@@ -61,7 +61,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="363.0" layoutY="333.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Slower Obstacles: 1000pts">
+      <Button fx:id="btnObstacle" layoutX="363.0" layoutY="333.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Slower Obstacles: 1000pts">
          <font>
             <Font size="17.0" />
          </font>
@@ -75,7 +75,7 @@
             <DropShadow color="#00a6ff" height="5.0" offsetY="1.0" radius="2.0" spread="0.77" width="5.0" />
          </effect>
       </ImageView>
-      <Button layoutX="363.0" layoutY="494.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Slower Objectives: 1000pts">
+      <Button fx:id="btnObjective" layoutX="363.0" layoutY="494.0" mnemonicParsing="false" onAction="#purchase" prefHeight="46.0" prefWidth="264.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Slower Objectives: 1000pts">
          <font>
             <Font size="17.0" />
          </font>
