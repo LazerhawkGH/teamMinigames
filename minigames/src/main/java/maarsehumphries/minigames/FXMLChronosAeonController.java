@@ -286,7 +286,6 @@ public class FXMLChronosAeonController implements Initializable {
                 try {
                     sceneChange();
                 } catch (IOException ex) {  // Has to throw IOException because of the sceneChange method, and how it operates
-                    ex.printStackTrace();
                 }
             }
             if (dir==1){ // Moves the enemies left
@@ -303,12 +302,11 @@ public class FXMLChronosAeonController implements Initializable {
         try {
             sceneChange();
         } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
     
     private void sceneChange() throws IOException{
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage stage = (Stage) imgUser.getScene().getWindow();
         stage.hide();
@@ -317,6 +315,7 @@ public class FXMLChronosAeonController implements Initializable {
         stage.show();
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));
+        player.stop();
     }
 
     

@@ -53,7 +53,7 @@
       </ImageView>
       <Line endX="486.0" fill="WHITE" layoutX="114.0" layoutY="139.0" startX="-114.0" stroke="#5d575e" strokeLineCap="ROUND" strokeType="OUTSIDE" />
       
-      <Button layoutX="114.0" layoutY="520.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
+      <Button fx:id="btnStore" layoutX="114.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="64.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
          <graphic>
             <ImageView fitHeight="44.0" fitWidth="213.0" pickOnBounds="true">
                <image>
