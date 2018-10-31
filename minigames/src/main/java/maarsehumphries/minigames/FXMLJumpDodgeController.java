@@ -140,7 +140,9 @@ public class FXMLJumpDodgeController implements Initializable {
         lblD.setText("Score: " + s);
         imgO.setTranslateX(imgO.getTranslateX() - (n - upgrade));
         if (c(imgO, imgB)) {
+
             gameover();
+
         }
         if (c(imgT, imgO)) {
             imgO.setTranslateX(300);

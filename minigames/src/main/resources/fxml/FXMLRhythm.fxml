@@ -27,8 +27,10 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+
         <Label fx:id="lblScore" layoutX="75.0" layoutY="130.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score: 0" />
       <ImageView fx:id="imgUser" fitHeight="83.0" fitWidth="618.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@../AllArrows.png" />
          </image></ImageView>
