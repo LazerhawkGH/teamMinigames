@@ -150,7 +150,7 @@ public class FXMLRhythmController implements Initializable {
         player = new MediaPlayer((new Media(getClass().getResource("/StayingAlive.mp3").toString())));
         player.play();
         lblPoints.setText("Points: "+ getPoints());
-    }
+    
 
 
         
