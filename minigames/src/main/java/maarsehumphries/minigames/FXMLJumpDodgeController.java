@@ -1,4 +1,3 @@
-
 /*
 Shayne Humphries
 
@@ -185,3 +184,5 @@ public class FXMLJumpDodgeController implements Initializable {
         }
     }
 }
+
+
