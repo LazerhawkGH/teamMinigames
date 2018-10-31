@@ -79,8 +79,8 @@ public class FXMLChronosAeonController implements Initializable {
     private int wallsHit = 0; // Used in an if statement to check when to speed up the enemies
     private int lives = 3;    // Number of lives the user has
     
-    private int score = 0; // Score only for the current game, reset after every 'round'
-                           // Used to check if the player has won
+    private int shipsHit = 0; // Only for the current game, reset after every 'round'
+                              // Used to check if the player has won
     
     private int scoreMult = 1; // Two variables used for the store bought upgrades
     private int upgrades = 0;  // By default will be a value that will not affect the game
@@ -116,8 +116,8 @@ public class FXMLChronosAeonController implements Initializable {
             if (cEnemies(recBullet, i)){ // Checks for a collision between the bullet and any of the enemies
                 i.setLayoutX(-1000);     // Enemies that are hit are sent off the scene, where they can't interfere
                 i.setLayoutY(-1000);     // 
-                score+=10 * scoreMult;   // Adds points for every hit, if the shop upgrade is bought the points are doubled
-                setPoints(getPoints() + 10);         // Uses the global variable so that points may be used in other scenes 
+                shipsHit+=1; // Used later to check if the user has hit all 36 ships
+                setPoints(getPoints() + (10 * scoreMult)); // Uses the global variable so that points may be used in other scenes 
                 lblPoints.setText("" + getPoints()); // Updates after every hit
                 return true;
             }else if (cEnemies(recBullet,rectBoundsTop)){ // If the user misses all of the enemies, prevents the bullet from
@@ -168,16 +168,16 @@ public class FXMLChronosAeonController implements Initializable {
         recEnemy33.setLayoutX(310);recEnemy33.setLayoutY(252);recEnemy34.setLayoutX(360);recEnemy34.setLayoutY(252);
         recEnemy35.setLayoutX(410);recEnemy35.setLayoutY(252);recEnemy36.setLayoutX(460);recEnemy36.setLayoutY(252);
          
-        recBullet.setTranslateX(576);
-        recBullet.setTranslateY(89);
+        recBullet.setTranslateX(10);
+        recBullet.setTranslateY(680);
         imgUser.setTranslateX(278);
         imgUser.setTranslateY(535);
-        score=0;
+        shipsHit=0;
         enemySpeed=0;
     }
     
     private void move() {
-        if (score==360 || score == 720){  // If the user has hit all of the enemies (10x36=360) or (20x36=720), then a pop-up notifies the user
+        if (shipsHit==36){  // If the user has hit all of the enemies (10x36=360) or (20x36=720), then a pop-up notifies the user
             reset();                      // of their victory
             movement.stop();        // Stops all of the timers to prevent any unnecessary movement
             movementEnemies.stop(); //
@@ -278,6 +278,7 @@ public class FXMLChronosAeonController implements Initializable {
                 enemySpeed+=1;
             }
             if (lives==0){
+                lives = 3;
                 Alert alert = new Alert(AlertType.INFORMATION); 
                 alert.setTitle("We're disappointed");
                 alert.setHeaderText(null);
@@ -286,7 +287,6 @@ public class FXMLChronosAeonController implements Initializable {
                 try {
                     sceneChange();
                 } catch (IOException ex) {  // Has to throw IOException because of the sceneChange method, and how it operates
-                    ex.printStackTrace();
                 }
             }
             if (dir==1){ // Moves the enemies left
@@ -303,12 +303,12 @@ public class FXMLChronosAeonController implements Initializable {
         try {
             sceneChange();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            
         }
     }
     
     private void sceneChange() throws IOException{
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage stage = (Stage) imgUser.getScene().getWindow();
         stage.hide();
@@ -317,6 +317,7 @@ public class FXMLChronosAeonController implements Initializable {
         stage.show();
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));
+        player.stop();
     }
 
     
@@ -383,7 +384,7 @@ public class FXMLChronosAeonController implements Initializable {
         lblPoints.setText("" + getPoints());
         
         // Variables initialized with default values
-        score=0;
+        shipsHit=0;
         bulletCreated = false;
         userMoving = false;
         

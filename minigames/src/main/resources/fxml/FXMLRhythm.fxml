@@ -27,7 +27,7 @@
          </fill>
       </Rectangle>
         <Label fx:id="lblScore" layoutX="77.0" layoutY="148.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score: 0" />
-      <ImageView fx:id="imgUser" fitHeight="78.0" fitWidth="607.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgUser" fitHeight="78.0" fitWidth="618.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgU" fitHeight="48.0" fitWidth="50.0" layoutX="279.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../arrowR.png" />

@@ -1,4 +1,8 @@
-
+/*
+ * Name: Zachary Maarse & Shayne Humphries
+ * Date: October 15th, 2018
+ * Purpose: Allows the user to play a game where you must press specific keys when the objects move to the correct location
+ */
 package maarsehumphries.minigames;
 
 import java.net.URL;
@@ -38,7 +42,7 @@ public class FXMLRhythmController implements Initializable {
     Timeline stop = new Timeline(new KeyFrame(Duration.millis(500), ae -> top()));
 
     int rand = 1;
-    int h = 3;
+    int h = 4;
     int s = 0;
 
     int success = 0;
@@ -110,12 +114,19 @@ public class FXMLRhythmController implements Initializable {
         approach.setCycleCount(Timeline.INDEFINITE);
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
+        
+        setObjectiveUpgrade(getObjectiveUpgrade());
+        
+        if (boughtObjective){
+            upgrade = 2;
+        }
     }
 
 
-
+    private int upgrade = 0;
+    
     private void move() {
-        imgU.setTranslateY(imgU.getTranslateY() + h);
+        imgU.setTranslateY(imgU.getTranslateY() + (h - upgrade));
         if (c(imgU, imgUser)) {
             if (list.get(0) == 1 && left == true) {
                 list.removeAll(list);
@@ -209,6 +220,8 @@ public class FXMLRhythmController implements Initializable {
         list.removeAll(list);
         choose();
         imgU.setTranslateY(-100);
+        
+        
     }
 }
 

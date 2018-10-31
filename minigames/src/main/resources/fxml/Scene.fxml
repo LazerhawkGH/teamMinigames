@@ -55,7 +55,7 @@
       
       <Button layoutX="114.0" layoutY="520.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="376.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css">
          <graphic>
-            <ImageView fitHeight="44.0" fitWidth="213.0" pickOnBounds="true">
+            <ImageView fx:id="btnShop" fitHeight="44.0" fitWidth="213.0" pickOnBounds="true">
                <image>
                   <Image url="@../shoptitle.png" />
                </image>
