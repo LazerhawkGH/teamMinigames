@@ -42,5 +42,6 @@
          </image>
       </ImageView>
       <Label fx:id="lblPoints" layoutX="592.0" layoutY="112.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Points: 0" />
+      <Label layoutX="217.0" layoutY="150.0" prefHeight="17.0" prefWidth="359.0" text="Press Start to start, and press ESCAPE to exit to the main menu" />
    </children>
 </AnchorPane>

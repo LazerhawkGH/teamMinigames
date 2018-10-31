@@ -20,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import static maarsehumphries.minigames.MainApp.*;
 
@@ -34,10 +36,12 @@ public class FXMLShopController implements Initializable {
     @FXML private Button btnScore;
     @FXML private Button btnObstacle;
     @FXML private Button btnObjective;
+    
+    MediaPlayer player;
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/FXMLMainMenu.fxml"));
+        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.hide();
@@ -46,6 +50,7 @@ public class FXMLShopController implements Initializable {
         stage.show();
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));
+        player.stop();
     }
     
     @FXML
@@ -111,6 +116,8 @@ public class FXMLShopController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        player = new MediaPlayer((new Media(getClass().getResource("/BadfingerComeAndGetIt.mp3").toString())));
+        player.play();
         setPoints(getPoints());   // Obtains the amount of points the user has, sets a label box to that amount
         lblPoints.setText("" + getPoints());
         
