@@ -33,14 +33,14 @@
          <image>
             <Image url="@../test.png" />
          </image></ImageView>
-      <Button fx:id="btnGame" focusTraversable="false" layoutX="333.0" layoutY="150.0" mnemonicParsing="false" onAction="#Begin" prefHeight="35.0" prefWidth="107.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Start" />
-      <Label fx:id="lblD" layoutX="100.0" layoutY="123.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Score: 0" />
+      <Button fx:id="btnGame" focusTraversable="false" layoutX="335.0" layoutY="105.0" mnemonicParsing="false" onAction="#Begin" prefHeight="35.0" prefWidth="107.0" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Start" />
+      <Label fx:id="lblD" layoutX="100.0" layoutY="112.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Score: 0" />
       <ImageView fx:id="imgT" fitHeight="496.0" fitWidth="5.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="165.0" fitWidth="707.0" layoutX="35.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../JumpDodgeTitle.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPoints" layoutX="588.0" layoutY="123.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Points: 0" />
+      <Label fx:id="lblPoints" layoutX="592.0" layoutY="112.0" styleClass="windows7-default" stylesheets="@../styles/styles-new.css" text="Points: 0" />
    </children>
 </AnchorPane>

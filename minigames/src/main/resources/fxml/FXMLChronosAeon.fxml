@@ -88,7 +88,7 @@
          </font>
       </Label>
       <Line endX="-100.0" endY="45.0" layoutX="184.0" layoutY="66.0" startX="-100.0" startY="15.0" stroke="WHITE" strokeType="OUTSIDE" />
-      <Button layoutX="510.0" layoutY="69.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="83.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Return">
+      <Button focusTraversable="false" layoutX="510.0" layoutY="69.0" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="83.0" styleClass="yeet-button-red" stylesheets="@../styles/styles-new.css" text="Return">
          <font>
             <Font size="11.0" />
          </font>

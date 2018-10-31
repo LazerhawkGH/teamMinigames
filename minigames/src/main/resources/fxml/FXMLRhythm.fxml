@@ -11,7 +11,8 @@
 
 <AnchorPane id="AnchorPane" onKeyPressed="#keyPressed" onKeyReleased="#keyRelease" prefHeight="511.0" prefWidth="617.0" style="-fx-background-color: #ad47f7;" stylesheets="@../styles/styles-new.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maarsehumphries.minigames.FXMLRhythmController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="190.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="620.0">
+      <ImageView fx:id="imgU" fitHeight="50.0" fitWidth="50.0" layoutX="283.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="176.0" layoutX="-2.0" stroke="BLACK" strokeType="INSIDE" width="620.0">
          <fill>
             <LinearGradient endX="0.9761904761904762" endY="0.9857142857142858" startX="0.06666666666666667" startY="0.12857142857142856">
                <stops>
@@ -26,11 +27,10 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-        <Label fx:id="lblScore" layoutX="77.0" layoutY="148.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score: 0" />
-      <ImageView fx:id="imgUser" fitHeight="78.0" fitWidth="607.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgU" fitHeight="48.0" fitWidth="50.0" layoutX="279.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+        <Label fx:id="lblScore" layoutX="75.0" layoutY="130.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Score: 0" />
+      <ImageView fx:id="imgUser" fitHeight="83.0" fitWidth="618.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../arrowR.png" />
+            <Image url="@../AllArrows.png" />
          </image></ImageView>
       <ImageView fx:id="imgB" fitHeight="7.0" fitWidth="607.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="127.0" fitWidth="319.0" layoutX="149.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +38,7 @@
             <Image url="@../rhythm.png" />
          </image>
       </ImageView>
-      <Button focusTraversable="false" layoutX="274.0" layoutY="148.0" mnemonicParsing="false" onAction="#Begin" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Begin" />
-      <Label fx:id="lblPoints" layoutX="447.0" layoutY="148.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Points: 0" />
+      <Button focusTraversable="false" layoutX="274.0" layoutY="130.0" mnemonicParsing="false" onAction="#Begin" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Begin" />
+      <Label fx:id="lblPoints" layoutX="448.0" layoutY="130.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Points: 0" />
     </children>
 </AnchorPane>

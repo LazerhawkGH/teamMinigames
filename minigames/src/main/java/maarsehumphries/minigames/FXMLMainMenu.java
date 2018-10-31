@@ -17,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class FXMLMainMenu implements Initializable {
@@ -31,9 +33,12 @@ public class FXMLMainMenu implements Initializable {
     private Button btnExit;
     @FXML
     private Button btnStore;
+    
+    MediaPlayer player;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
+        player.stop();
         if (btnExit.isArmed()) {
             System.exit(0);
         }
@@ -85,6 +90,7 @@ public class FXMLMainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        player = new MediaPlayer((new Media(getClass().getResource("/RockyTheme.mp3").toString())));
+        player.play();
     }
 }
