@@ -114,6 +114,12 @@ public class FXMLRhythmController implements Initializable {
         approach.setCycleCount(Timeline.INDEFINITE);
         imgU.setLayoutY(-100);
         imgB.setTranslateY(40);
+        
+        setObjectiveUpgrade(getObjectiveUpgrade());
+        
+        if (boughtObjective){
+            upgrade = 2;
+        }
     }
 
 
@@ -215,11 +221,7 @@ public class FXMLRhythmController implements Initializable {
         choose();
         imgU.setTranslateY(-100);
         
-        setObjectiveUpgrade(getObjectiveUpgrade());
         
-        if (boughtObjective){
-            upgrade = 2;
-        }
     }
 }
 
