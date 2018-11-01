@@ -99,7 +99,7 @@
                 </configuration>
             </plugin>
 
- <!-- Makes the jLink setup so you can give it to your friends 
+ <!-- Makes the jLink setup so you can give it to your friends -->
             <plugin>
                 <groupId>org.moditect</groupId>
                 <artifactId>moditect-maven-plugin</artifactId>
@@ -116,12 +116,12 @@
                                 <path>${project.build.directory}/modules</path>
                             </modulePath>
                             <modules>
-                                <module>${project.groupId</module>
+                                <module>${project.groupId}</module>
                                
                             </modules>
                             <launcher>
                                 <name>${project.name}</name>
-                                <module>${project.groupId/${mainClass}</module>
+                                <module>${project.groupId}/${mainClass}</module>
                             </launcher>
                             <compression>2</compression>
                             <stripDebug>true</stripDebug>
@@ -130,7 +130,7 @@
                     </execution>
                 </executions>
             </plugin>
-              -->
+              
             <!-- Copies the depend FX files to your program  -->  
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
