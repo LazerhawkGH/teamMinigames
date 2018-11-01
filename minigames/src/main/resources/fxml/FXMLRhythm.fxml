@@ -42,6 +42,6 @@
       </ImageView>
       <Button fx:id="btnStart" focusTraversable="false" layoutX="274.0" layoutY="112.0" mnemonicParsing="false" onAction="#Begin" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Begin" />
       <Label fx:id="lblPoints" layoutX="444.0" layoutY="112.0" minHeight="16" minWidth="69" styleClass="yeet-button-blue-three" stylesheets="@../styles/styles-new.css" text="Points: 0" />
-      <Label layoutX="134.0" layoutY="149.0" text="Press Begin to start, and press ESCAPE to exit to the main menu" />
+      <Label layoutX="11.0" layoutY="149.0" text="Press Begin to start, use the arrow keys for the corresponding actions, and press ESCAPE to exit to the main menu" />
     </children>
 </AnchorPane>
