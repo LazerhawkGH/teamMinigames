@@ -311,13 +311,17 @@ public class FXMLChronosAeonController implements Initializable {
         Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage stage = (Stage) imgUser.getScene().getWindow();
+        movement.stop();
+        movementEnemies.stop();
+        moveBullet.stop();
+        player.stop();
         stage.hide();
         stage.setScene(home_page_scene);
         stage.setTitle("Main Menu");
         stage.show();
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));
-        player.stop();
+        
     }
 
     

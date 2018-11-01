@@ -38,8 +38,7 @@ import static maarsehumphries.minigames.MainApp.*;
 
 public class FXMLRhythmController implements Initializable {
 
-    @FXML
-    private Label lblTest;
+
     @FXML
     private ImageView imgUser;
     @FXML
