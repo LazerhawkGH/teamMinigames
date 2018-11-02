@@ -180,8 +180,8 @@ public class FXMLChronosAeonController implements Initializable {
     }
     
     private void move() {
-        if (shipsHit==36){  // If the user has hit all of the enemies (10x36=360) or (20x36=720), then a pop-up notifies the user
-            reset();                      // of their victory
+        if (shipsHit==36){  // If the user has hit all of the enemies, then a pop-up notifies the user of their victory
+            reset(); // Moves everything back to its normal position
             movement.stop();        // Stops all of the timers to prevent any unnecessary movement
             movementEnemies.stop(); //
             moveBullet.stop();      //
