@@ -378,6 +378,7 @@ public class FXMLChronosAeonController implements Initializable {
             movementEnemies.setCycleCount(Timeline.INDEFINITE);
             movementEnemies.play();
             blink.stop();
+            lblBlink.setVisible(false);
         }
     }
     
