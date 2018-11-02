@@ -45,6 +45,7 @@ public class FXMLChronosAeonController implements Initializable {
     
     @FXML private Label lblPoints;
     @FXML private Label lblLives;
+    @FXML private Label lblBlink;
     
     @FXML private Rectangle recBullet;
     
@@ -65,6 +66,7 @@ public class FXMLChronosAeonController implements Initializable {
     Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
     Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(15), ae -> bulletMove()));
     Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(90), ae -> moveEnemies()));
+    Timeline blink = new Timeline(new KeyFrame(Duration.millis(600), ae -> blinkyBoi()));
 
     private Boolean upYes = false;    /////////////////////////////////////////////////////////////////
     private Boolean downYes = false;  // Booleans to determine what direction the user is moving in  //
@@ -168,6 +170,7 @@ public class FXMLChronosAeonController implements Initializable {
         recEnemy33.setLayoutX(310);recEnemy33.setLayoutY(252);recEnemy34.setLayoutX(360);recEnemy34.setLayoutY(252);
         recEnemy35.setLayoutX(410);recEnemy35.setLayoutY(252);recEnemy36.setLayoutX(460);recEnemy36.setLayoutY(252);
          
+        bulletCreated=false;
         recBullet.setTranslateX(10);
         recBullet.setTranslateY(680);
         imgUser.setTranslateX(278);
@@ -311,13 +314,17 @@ public class FXMLChronosAeonController implements Initializable {
         Parent home_page_parent = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         Scene home_page_scene = new Scene(home_page_parent);
         Stage stage = (Stage) imgUser.getScene().getWindow();
+        movement.stop();
+        movementEnemies.stop();
+        moveBullet.stop();
+        player.stop();
         stage.hide();
         stage.setScene(home_page_scene);
         stage.setTitle("Main Menu");
         stage.show();
         home_page_scene.getRoot().requestFocus();
         stage.setOnCloseRequest(e -> System.exit(0));
-        player.stop();
+        
     }
 
     
@@ -370,9 +377,17 @@ public class FXMLChronosAeonController implements Initializable {
             movement.play();
             movementEnemies.setCycleCount(Timeline.INDEFINITE);
             movementEnemies.play();
+            blink.stop();
         }
     }
     
+     private void blinkyBoi() {
+       if (lblBlink.isVisible()){
+           lblBlink.setVisible(false);
+       }else if (!lblBlink.isVisible()){
+           lblBlink.setVisible(true);
+       }
+    }
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -389,7 +404,11 @@ public class FXMLChronosAeonController implements Initializable {
         userMoving = false;
         
         player = new MediaPlayer((new Media(getClass().getResource("/Rasputin 8Bit.mp3").toString())));
+        player.setCycleCount(Timeline.INDEFINITE);
         player.play();
+        
+        blink.setCycleCount(Timeline.INDEFINITE);
+        blink.play();
         
         
         // Handles the global variables, checks for either one being bought
@@ -404,5 +423,7 @@ public class FXMLChronosAeonController implements Initializable {
             scoreMult = 2;
         }
     }
+
+   
 
 }
