@@ -256,9 +256,9 @@ public class FXMLChronosAeonController implements Initializable {
             }else if (cEnemies(e,rectBoundsLeft)){ // If one of the enemies hits the wall on the left
                 dir = 2;                           // The direction of the enemies is changed to the opposite direction
                 wallsHit+=1;
-                for (Rectangle z:enemies){         // Loops through again to move the enemies
-                    z.setTranslateY(z.getTranslateY() + 8);
-                    z.setTranslateX(z.getTranslateX() + 5);
+                for (Rectangle a:enemies){         // Loops through again to move the enemies
+                    a.setTranslateY(a.getTranslateY() + 8);
+                    a.setTranslateX(a.getTranslateX() + 5);
                 }
                 break;
             } else if ((cEnemies(e,rectBoundsBottom)) || (collision(imgUser, e))){  // If any enemy hits the user, or makes it past the user,
