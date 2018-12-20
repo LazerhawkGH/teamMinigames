@@ -151,7 +151,7 @@ public class FXMLRhythmController implements Initializable {
     
 
 
-        
+        // Handles the global variables upon initializing, checking whether or not to apply certain changes
         setObjectiveUpgrade(getObjectiveUpgrade());
         
         if (boughtObjective){
@@ -228,8 +228,10 @@ public class FXMLRhythmController implements Initializable {
 
         }
     }
-
+    
+    // Handles where the arrow will appear
     public void choose() {
+        // Position of arrow is random, but depending on where it is, the arrow must be in a certain direction
         rand = ThreadLocalRandom.current().nextInt(1, 4 + 1);
         switch (rand) {
             case 1:
@@ -255,6 +257,7 @@ public class FXMLRhythmController implements Initializable {
         }
     }
 
+    // Collision method, between two images
     public boolean c(ImageView block1, ImageView block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }

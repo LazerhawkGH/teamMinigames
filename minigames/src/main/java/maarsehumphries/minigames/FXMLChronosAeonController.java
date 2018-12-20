@@ -38,6 +38,7 @@ import javafx.stage.Stage;
 public class FXMLChronosAeonController implements Initializable {
 
     @FXML private ImageView imgUser;
+    
     @FXML private Rectangle rectBoundsTop;
     @FXML private Rectangle rectBoundsBottom;
     @FXML private Rectangle rectBoundsLeft;
@@ -45,10 +46,11 @@ public class FXMLChronosAeonController implements Initializable {
     
     @FXML private Label lblPoints;
     @FXML private Label lblLives;
-    @FXML private Label lblBlink;
+    @FXML private Label lblBlink; // Label that blinks upon loading the game, to notify the user how to start
     
     @FXML private Rectangle recBullet;
-    
+        
+    // Each of the enemies declared, so that they can be added to an array
     @FXML private Rectangle recEnemy1; @FXML private Rectangle recEnemy2; @FXML private Rectangle recEnemy3;
     @FXML private Rectangle recEnemy4; @FXML private Rectangle recEnemy5; @FXML private Rectangle recEnemy6;
     @FXML private Rectangle recEnemy7; @FXML private Rectangle recEnemy8; @FXML private Rectangle recEnemy9;
@@ -63,10 +65,10 @@ public class FXMLChronosAeonController implements Initializable {
     @FXML private Rectangle recEnemy34;@FXML private Rectangle recEnemy35;@FXML private Rectangle recEnemy36;
     
 
-    Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));
-    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(15), ae -> bulletMove()));
-    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(90), ae -> moveEnemies()));
-    Timeline blink = new Timeline(new KeyFrame(Duration.millis(600), ae -> blinkyBoi()));
+    Timeline movement = new Timeline(new KeyFrame(Duration.millis(50), ae -> move()));  // Moves the user
+    Timeline moveBullet = new Timeline(new KeyFrame(Duration.millis(15), ae -> bulletMove())); // Moves the bullet
+    Timeline movementEnemies = new Timeline(new KeyFrame(Duration.millis(90), ae -> moveEnemies())); // Moves the enemies
+    Timeline blink = new Timeline(new KeyFrame(Duration.millis(600), ae -> blinkyBoi())); // Makes a label blink
 
     private Boolean upYes = false;    /////////////////////////////////////////////////////////////////
     private Boolean downYes = false;  // Booleans to determine what direction the user is moving in  //
@@ -150,7 +152,7 @@ public class FXMLChronosAeonController implements Initializable {
             e.setTranslateY(0);
             e.setVisible(true);
         }
-        //Manually moving each enemy to the correct spot
+        //Manually moves each enemy to the correct spot
         recEnemy1.setLayoutX(110);recEnemy1.setLayoutY(123);recEnemy2.setLayoutX(160);recEnemy2.setLayoutY(123);
         recEnemy3.setLayoutX(210);recEnemy3.setLayoutY(123);recEnemy4.setLayoutX(260);recEnemy4.setLayoutY(123);
         recEnemy5.setLayoutX(310);recEnemy5.setLayoutY(123);recEnemy6.setLayoutX(360);recEnemy6.setLayoutY(123);
@@ -171,17 +173,17 @@ public class FXMLChronosAeonController implements Initializable {
         recEnemy35.setLayoutX(410);recEnemy35.setLayoutY(252);recEnemy36.setLayoutX(460);recEnemy36.setLayoutY(252);
          
         bulletCreated=false;
-        recBullet.setTranslateX(10);
+        recBullet.setTranslateX(10);  // Moves the bullet back to its default point
         recBullet.setTranslateY(680);
-        imgUser.setTranslateX(278);
+        imgUser.setTranslateX(278); // Moves the user back to the starting point
         imgUser.setTranslateY(535);
-        shipsHit=0;
-        enemySpeed=0;
+        shipsHit=0; // Resets the number of ships hit
+        enemySpeed=0; // Prevents enemies from starting off too fast
     }
     
     private void move() {
-        if (shipsHit==36){  // If the user has hit all of the enemies (10x36=360) or (20x36=720), then a pop-up notifies the user
-            reset();                      // of their victory
+        if (shipsHit==36){  // If the user has hit all of the enemies, then a pop-up notifies the user of their victory
+            reset(); // Moves everything back to its normal position
             movement.stop();        // Stops all of the timers to prevent any unnecessary movement
             movementEnemies.stop(); //
             moveBullet.stop();      //
@@ -256,9 +258,9 @@ public class FXMLChronosAeonController implements Initializable {
             }else if (cEnemies(e,rectBoundsLeft)){ // If one of the enemies hits the wall on the left
                 dir = 2;                           // The direction of the enemies is changed to the opposite direction
                 wallsHit+=1;
-                for (Rectangle z:enemies){         // Loops through again to move the enemies
-                    z.setTranslateY(z.getTranslateY() + 8);
-                    z.setTranslateX(z.getTranslateX() + 5);
+                for (Rectangle a:enemies){         // Loops through again to move the enemies
+                    a.setTranslateY(a.getTranslateY() + 8);
+                    a.setTranslateX(a.getTranslateX() + 5);
                 }
                 break;
             } else if ((cEnemies(e,rectBoundsBottom)) || (collision(imgUser, e))){  // If any enemy hits the user, or makes it past the user,
@@ -378,6 +380,7 @@ public class FXMLChronosAeonController implements Initializable {
             movementEnemies.setCycleCount(Timeline.INDEFINITE);
             movementEnemies.play();
             blink.stop();
+            lblBlink.setVisible(false);
         }
     }
     

@@ -1,6 +1,7 @@
 /*
-Shayne Humphries
-
+ * Author: Shayne Humphries
+ * Date: Oct 15,2018
+ * Purpose: Play a game like the offline Google Chrome game
  */
 package maarsehumphries.minigames;
 
